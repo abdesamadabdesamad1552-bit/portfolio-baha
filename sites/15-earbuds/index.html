@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>PulsePods — سماعات لاسلكية | صوت نقي، حرية كاملة</title>
+<meta name="description" content="PulsePods سماعات لاسلكية بإلغاء ضوضاء نشط وبطارية تدوم 30 ساعة مع العلبة. صوت استوديو فأذنيك. الدفع عند الاستلام فكامل المغرب." />
+<meta name="theme-color" content="#ffffff" />
+<link rel="preload" as="image" href="./img/hero.jpg" />
+<link rel="stylesheet" href="./fonts.css" />
+<style>
+:root{
+  --bg:#ffffff; --bg2:#f5f6fb; --fg:#111827; --accent:#6d5bff; --accent-2:#00c2a8; --accent-3:#ff5b7f;
+  --muted:#6b7280; --line:rgba(17,24,39,.09); --card:#f8f8fd;
+  --shadow:0 24px 60px -24px rgba(109,91,255,.28);
+  --display:"Cairo","Cairo Fallback","Segoe UI",Tahoma,sans-serif;
+  --body:"IBM Plex Sans Arabic","IBM Plex Sans Arabic Fallback","Segoe UI",Tahoma,sans-serif;
+  --maxw:1160px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:hidden}
+body{font-family:var(--body);background:var(--bg);color:var(--fg);line-height:1.62;overflow-x:hidden;font-size:16px;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:var(--display);line-height:1.05;font-weight:800;letter-spacing:-.02em}
+img{max-width:100%;display:block}a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+::selection{background:var(--accent);color:#fff}
+
+.wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:22px}
+.pad{padding:clamp(70px,10vw,120px) 0}
+.eyebrow{font-family:var(--display);font-weight:800;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);display:inline-flex;align-items:center;gap:8px}
+.eyebrow.center{justify-content:center;width:100%;text-align:center}
+.stitle{font-size:clamp(30px,5.4vw,54px);margin-top:14px;font-weight:800}
+.lead{color:var(--muted);font-size:clamp(15px,2.3vw,18px);max-width:56ch}
+
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+.reveal.in{opacity:1;transform:none}
+.reveal[data-d="1"]{transition-delay:.08s}.reveal[data-d="2"]{transition-delay:.16s}.reveal[data-d="3"]{transition-delay:.24s}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+
+#loader{position:fixed;inset:0;z-index:1000;background:var(--bg);display:grid;place-items:center;transition:opacity .5s,visibility .5s}
+#loader.done{opacity:0;visibility:hidden}
+.loader-dots{display:flex;gap:8px}
+.loader-dots i{width:10px;height:10px;border-radius:50%;background:var(--accent);animation:bounce 1s ease-in-out infinite}
+.loader-dots i:nth-child(2){animation-delay:.15s;background:var(--accent-2)}
+.loader-dots i:nth-child(3){animation-delay:.3s;background:var(--accent-3)}
+@keyframes bounce{0%,80%,100%{transform:scale(.6)}40%{transform:scale(1)}}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;font-family:var(--display);font-weight:700;font-size:15px;padding:15px 30px;border-radius:14px;background:var(--fg);color:#fff;transition:transform .3s cubic-bezier(.16,1,.3,1),background .3s;position:relative;overflow:hidden}
+.btn span{position:relative;z-index:1}
+.btn::before{content:"";position:absolute;inset:0;background:linear-gradient(120deg,var(--accent),var(--accent-2));transform:translateY(100%);transition:transform .35s cubic-bezier(.16,1,.3,1);z-index:0}
+.btn:hover::before{transform:translateY(0)}
+.btn:hover{transform:translateY(-3px)}
+.btn-ghost{background:var(--card);color:var(--fg);box-shadow:inset 0 0 0 1.4px var(--line)}
+.btn-ghost:hover{box-shadow:inset 0 0 0 1.4px var(--accent)}
+
+header{position:fixed;top:0;inset-inline:0;z-index:90;background:rgba(255,255,255,.85);backdrop-filter:blur(12px);border-bottom:1px solid transparent;transition:.3s}
+header.stuck{border-bottom-color:var(--line)}
+.hbar{display:flex;align-items:center;justify-content:space-between;max-width:var(--maxw);margin-inline:auto;padding:15px 22px}
+.brand{font-family:var(--display);font-weight:800;font-size:16px;display:flex;align-items:center;gap:8px}
+.brand i{width:9px;height:9px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent-2))}
+
+/* HERO — animated wave orbit */
+.hero{padding:150px 0 20px;text-align:center;position:relative}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--card);border-radius:999px;padding:8px 18px;font-size:13px;font-weight:600;color:var(--accent)}
+.hero h1{font-size:clamp(42px,8.6vw,94px);margin-top:22px;letter-spacing:-.04em}
+.hero h1 .g{background:linear-gradient(100deg,var(--accent),var(--accent-2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{margin:18px auto 0;color:var(--muted);max-width:520px;font-size:clamp(16px,2.3vw,20px)}
+.hero-cta{margin-top:28px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.orbit-stage{position:relative;width:min(460px,90vw);margin:56px auto 0;aspect-ratio:1}
+.orbit-stage .ring{position:absolute;inset:0;border-radius:50%;border:1px dashed var(--line);animation:spin 26s linear infinite}
+.orbit-stage .ring2{inset:9%;animation-duration:20s;animation-direction:reverse}
+@keyframes spin{to{transform:rotate(360deg)}}
+.orbit-stage .core{position:absolute;inset:16%;border-radius:50%;overflow:hidden;box-shadow:var(--shadow)}
+.orbit-stage .core img{width:100%;height:100%;object-fit:cover}
+.orbit-dot{position:absolute;width:14px;height:14px;border-radius:50%;box-shadow:0 0 0 6px rgba(109,91,255,.12)}
+.orbit-dot.a{background:var(--accent);top:2%;left:50%;transform:translateX(-50%)}
+.orbit-dot.b{background:var(--accent-2);bottom:6%;right:8%}
+.orbit-dot.c{background:var(--accent-3);bottom:14%;left:6%}
+.hero-chip{position:absolute;background:#fff;border:1px solid var(--line);border-radius:14px;padding:11px 15px;box-shadow:var(--shadow);text-align:start}
+.hero-chip.a{top:4%;inset-inline-start:-4%}
+.hero-chip.b{bottom:8%;inset-inline-end:-6%}
+.hero-chip b{font-family:var(--display);font-weight:800;font-size:17px;color:var(--accent);display:block;line-height:1}
+.hero-chip span{font-size:10.5px;color:var(--muted)}
+
+/* SIGNATURE: interactive tab switcher (ANC on/off waveform) */
+.ancdemo{max-width:720px;margin:50px auto 0;background:var(--card);border-radius:26px;padding:36px;text-align:center}
+.anctabs{display:inline-flex;background:#fff;border-radius:999px;padding:5px;box-shadow:var(--shadow);margin-bottom:26px}
+.anctabs button{padding:10px 22px;border-radius:999px;font-family:var(--display);font-weight:700;font-size:13.5px;color:var(--muted);transition:.3s}
+.anctabs button.active{background:var(--fg);color:#fff}
+.wave{display:flex;align-items:center;justify-content:center;gap:4px;height:70px}
+.wave i{width:5px;border-radius:3px;background:var(--accent);transition:height .3s ease,background .3s}
+.wave.calm i{background:var(--accent-2)}
+
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:50px}
+.stat{padding:38px 16px;text-align:center;border-inline-start:1px solid var(--line)}
+.stat:first-child{border-inline-start:none}
+.stat b{font-family:var(--display);font-weight:800;font-size:clamp(26px,3.8vw,38px);display:block}
+.stat span{color:var(--muted);font-size:12.5px}
+
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;padding:54px 0}
+.frow:nth-child(even){direction:ltr}
+.frow:nth-child(even) .ftext{direction:rtl}
+.frow .fmedia{border-radius:22px;overflow:hidden;aspect-ratio:4/3;box-shadow:var(--shadow)}
+.frow .fmedia img{width:100%;height:100%;object-fit:cover}
+.ftext .k{font-family:var(--display);font-weight:700;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent)}
+.ftext h3{font-size:clamp(24px,3.4vw,36px);margin-top:12px}
+.ftext p{color:var(--muted);margin-top:14px;font-size:15.5px;line-height:1.75}
+
+.compare{overflow-x:auto;margin-top:40px;border-radius:20px;border:1px solid var(--line);background:var(--card)}
+table{width:100%;border-collapse:collapse;min-width:560px}
+th,td{padding:16px 18px;text-align:start;font-size:14.5px;border-bottom:1px solid var(--line)}
+thead th{font-family:var(--display);font-size:12.5px;color:var(--muted);font-weight:700}
+thead th.us{color:var(--accent)}
+tbody td:first-child{font-weight:600;font-family:var(--display)}
+.col-us{background:color-mix(in srgb,var(--accent) 7%,transparent)}
+.yes{color:#0d9c6f;font-weight:800}.no{color:#c4553f}
+tr:last-child td{border-bottom:none}
+
+.tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:44px}
+.tcard{background:var(--card);border-radius:20px;padding:26px;transition:.4s}
+.tcard:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+.stars{color:var(--accent);letter-spacing:2px;font-size:14px}
+.tcard p{font-size:14.5px;margin-top:12px}
+.tcard .who{margin-top:16px;display:flex;align-items:center;gap:10px}
+.tcard .who i{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:grid;place-items:center;color:#fff;font-family:var(--display);font-weight:800;font-size:14px}
+.tcard .who b{font-family:var(--display);display:block;font-size:13.5px}
+.tcard .who small{color:var(--muted);font-size:11.5px}
+
+.guarantee{background:var(--card);border-radius:24px;padding:clamp(30px,5vw,50px);display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center}
+.seal{width:100px;height:100px;border-radius:50%;display:grid;place-items:center;flex:none;background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff;text-align:center;font-family:var(--display);font-weight:800}
+.seal b{font-size:26px;line-height:1}.seal small{font-size:9.5px}
+.guarantee h3{font-size:clamp(20px,3.2vw,28px)}
+.guarantee p{color:var(--muted);margin-top:8px}
+.urgency{display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;background:var(--fg);color:#fff;border-radius:20px;padding:22px 28px;margin-top:24px}
+.urgency .lbl{font-family:var(--display);font-weight:700}
+.urgency .lbl small{display:block;color:rgba(255,255,255,.6);font-size:12px;font-weight:400}
+.count{display:flex;gap:9px}
+.count div{background:rgba(255,255,255,.12);border-radius:9px;padding:8px 12px;text-align:center;min-width:50px}
+.count b{font-family:var(--display);font-size:21px;display:block}
+.count small{font-size:9.5px;color:rgba(255,255,255,.6)}
+.stockbar{height:7px;border-radius:99px;background:rgba(255,255,255,.15);overflow:hidden;flex:1;min-width:120px}
+.stockbar i{display:block;height:100%;width:24%;background:linear-gradient(90deg,var(--accent-2),var(--accent))}
+
+.faq{max-width:740px;margin:40px auto 0}
+details{background:var(--card);border-radius:16px;margin-bottom:10px;overflow:hidden}
+summary{list-style:none;cursor:pointer;padding:18px 20px;font-family:var(--display);font-weight:700;font-size:15px;display:flex;justify-content:space-between;gap:14px}
+summary::-webkit-details-marker{display:none}
+summary .plus{color:var(--accent);font-size:17px;transition:.3s}
+details[open] summary .plus{transform:rotate(45deg)}
+details p{padding:0 20px 18px;color:var(--muted);font-size:14px}
+
+.order{max-width:500px;margin-inline:auto}
+.order-card{background:var(--card);border-radius:26px;padding:clamp(26px,5vw,40px)}
+.price-row{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:8px 0}
+.price-now{font-family:var(--display);font-weight:800;font-size:40px;color:var(--accent);line-height:1}
+.price-now span{font-size:17px;color:var(--muted)}
+.price-old{color:var(--muted);text-decoration:line-through;font-size:16px}
+.save-tag{background:var(--accent-2);color:#fff;font-family:var(--display);font-weight:700;font-size:11px;padding:5px 11px;border-radius:999px}
+.field{margin-top:14px}
+.field label{font-size:12px;font-weight:600;color:var(--muted);margin-bottom:6px;display:block}
+.field input{width:100%;padding:14px 15px;border-radius:12px;border:1.4px solid var(--line);background:#fff;font-family:var(--body);font-size:16px;color:var(--fg)}
+.field input:focus{outline:none;border-color:var(--accent)}
+.order .btn{width:100%;margin-top:18px}
+.secure{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:16px;color:var(--muted);font-size:11px}
+.trust-badges{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:22px}
+.trust-badges div{background:var(--card);border-radius:10px;padding:9px 13px;font-size:11px;font-family:var(--display);font-weight:600;color:var(--muted)}
+
+.float-cta{position:fixed;inset-inline:0;bottom:0;z-index:80;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:linear-gradient(180deg,transparent,var(--bg) 30%);display:none;justify-content:center}
+.float-cta .btn{width:100%;max-width:420px}
+footer{border-top:1px solid var(--line);margin-top:40px;padding:36px 0 130px;text-align:center;color:var(--muted);font-size:12px}
+
+@media(max-width:900px){.stats{grid-template-columns:1fr 1fr}.stat:nth-child(3){border-inline-start:none}.frow,.frow:nth-child(even){grid-template-columns:1fr;direction:rtl}.tgrid{grid-template-columns:1fr}.guarantee{grid-template-columns:1fr;text-align:center;justify-items:center}}
+@media(max-width:620px){.float-cta{display:flex}footer{padding-bottom:140px}.hero-chip{padding:9px 12px}}
+</style>
+</head>
+<body>
+<div id="loader"><div class="loader-dots"><i></i><i></i><i></i></div></div>
+
+<header id="hdr"><div class="hbar">
+  <a href="#top" class="brand"><i></i>PulsePods</a>
+  <a href="#order" class="btn" style="padding:10px 20px;font-size:13px"><span>اطلب دابا</span></a>
+</div></header>
+
+<main id="top">
+<section class="hero">
+  <div class="wrap">
+    <span class="hero-badge reveal">🎧 صوت استوديو، حرية كاملة</span>
+    <h1 class="reveal" data-d="1">اسمع العالم<br>ب<span class="g">وضوح تام</span></h1>
+    <p class="reveal" data-d="2">PulsePods سماعات لاسلكية بإلغاء ضوضاء نشط وبطارية تدوم 30 ساعة مع العلبة.</p>
+    <div class="hero-cta reveal" data-d="3">
+      <a href="#order" class="btn"><span>اطلب دابا — 229 د.م</span></a>
+      <a href="#anc" class="btn btn-ghost">جرّب إلغاء الضوضاء</a>
+    </div>
+    <div class="orbit-stage reveal" data-d="2">
+      <div class="ring"></div><div class="ring ring2"></div>
+      <div class="core"><img src="./img/hero.jpg" alt="PulsePods سماعات لاسلكية" fetchpriority="high" /></div>
+      <div class="orbit-dot a"></div><div class="orbit-dot b"></div><div class="orbit-dot c"></div>
+      <div class="hero-chip a"><b>30h</b><span>بطارية كاملة</span></div>
+      <div class="hero-chip b"><b>ANC</b><span>إلغاء ضوضاء نشط</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- SIGNATURE: interactive ANC demo -->
+<section class="pad" id="anc">
+  <div class="wrap">
+    <p class="eyebrow center reveal">إلغاء الضوضاء</p>
+    <h2 class="stitle reveal" style="text-align:center">جرّب الفرق بنفسك</h2>
+    <div class="ancdemo reveal">
+      <div class="anctabs">
+        <button class="active" data-mode="noisy">🔊 بلا إلغاء الضوضاء</button>
+        <button data-mode="calm">🔇 مع PulsePods</button>
+      </div>
+      <div class="wave" id="wave"></div>
+      <p style="color:var(--muted);font-size:13.5px;margin-top:16px" id="waveLabel">هكا كيبان الصوت المحيط بلا إلغاء الضوضاء</p>
+    </div>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="stat reveal"><b class="num" data-target="30">0</b><span>ساعة بطارية</span></div>
+  <div class="stat reveal" data-d="1"><b class="num" data-target="35">0</b><span>dB إلغاء ضوضاء</span></div>
+  <div class="stat reveal" data-d="2"><b class="num" data-target="10">0</b><span>دقائق = 2 ساعة شحن</span></div>
+  <div class="stat reveal" data-d="3"><b class="num" data-target="97">0</b><span>% رضا الزبناء</span></div>
+</section>
+
+<section class="pad" style="padding-top:0">
+  <div class="wrap">
+    <div class="frow">
+      <div class="fmedia reveal"><img src="./img/detail1.jpg" alt="جودة الصوت" /></div>
+      <div class="ftext reveal" data-d="1">
+        <span class="k">الصوت</span>
+        <h3>باص عميق، حدة صافية</h3>
+        <p>سماعات دقيقة كتعطي توازن مثالي بين الباص والحدة — صوت استوديو فأذنيك.</p>
+      </div>
+    </div>
+    <div class="frow">
+      <div class="ftext reveal">
+        <span class="k">الشحن</span>
+        <h3>10 دقائق = ساعتين استعمال</h3>
+        <p>تقنية شحن سريع كتعطيك ساعات من الاستعمال بدقائق معدودة.</p>
+      </div>
+      <div class="fmedia reveal" data-d="1"><img src="./img/detail2.jpg" alt="شحن سريع" /></div>
+    </div>
+    <div class="frow">
+      <div class="fmedia reveal"><img src="./img/lifestyle.jpg" alt="استعمال يومي" /></div>
+      <div class="ftext reveal" data-d="1">
+        <span class="k">المقاومة</span>
+        <h3>IPX5 ضد العرق والمطر</h3>
+        <p>رياضة، جري، ولا مطر خفيف — PulsePods تتحمّل معاك أي نشاط.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pad" style="padding-top:0">
+  <div class="wrap">
+    <p class="eyebrow center reveal">المقارنة</p>
+    <h2 class="stitle reveal" style="text-align:center">علاش PulsePods</h2>
+    <div class="compare reveal">
+      <table>
+        <thead><tr><th>الميزة</th><th class="us">PulsePods</th><th>سماعات عادية</th><th>سماعات سلكية</th></tr></thead>
+        <tbody>
+          <tr><td>إلغاء ضوضاء نشط</td><td class="col-us yes">✓</td><td class="no">✕</td><td class="no">✕</td></tr>
+          <tr><td>بطارية 30 ساعة</td><td class="col-us yes">✓</td><td>غالباً أقل</td><td class="col-us yes">غير محدودة</td></tr>
+          <tr><td>مقاومة العرق والمطر</td><td class="col-us yes">✓</td><td>حسب</td><td class="no">✕</td></tr>
+          <tr><td>حرية الحركة</td><td class="col-us yes">✓</td><td class="col-us yes">✓</td><td class="no">✕</td></tr>
+          <tr><td>الدفع عند الاستلام</td><td class="col-us yes">✓</td><td>حسب</td><td>حسب</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="pad" style="padding-top:0">
+  <div class="wrap">
+    <p class="eyebrow center reveal">آراء الزبناء</p>
+    <h2 class="stitle reveal" style="text-align:center">+4,100 أذن كتسمع بوضوح</h2>
+    <div class="tgrid">
+      <div class="tcard reveal"><div class="stars">★★★★★</div><p>"إلغاء الضوضاء رهيب. كنستعملها فالطرامواي وكنسمع الموسيقى بلا ما نسمع الضجة."</p><div class="who"><i>ن</i><div><b>نبيل . ف</b><small>الدار البيضاء</small></div></div></div>
+      <div class="tcard reveal" data-d="1"><div class="stars">★★★★★</div><p>"البطارية تدوم بصح. كنشحنها مرة فالأسبوع تقريباً. راضية بزاف."</p><div class="who"><i>ه</i><div><b>هاجر . ص</b><small>فاس</small></div></div></div>
+      <div class="tcard reveal" data-d="2"><div class="stars">★★★★★</div><p>"الدفع عند الاستلام طمّنني. الصوت جودة عالية والثمن معقول بزاف."</p><div class="who"><i>ب</i><div><b>بلال . ج</b><small>طنجة</small></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="pad" style="padding-top:0">
+  <div class="wrap">
+    <div class="guarantee reveal">
+      <div class="seal"><div><b>1Y</b><small>ضمان كامل</small></div></div>
+      <div><h3>ضمان سنة كاملة على العيوب</h3><p>ثقة كاملة فجودة PulsePods.</p></div>
+    </div>
+    <div class="urgency reveal">
+      <div class="lbl">🎧 عرض الإطلاق ساري<small>الثمن يرجع لـ 340 د.م من بعد</small></div>
+      <div class="stockbar"><i></i></div>
+      <div class="count" id="count"><div><b id="h">00</b><small>ساعة</small></div><div><b id="m">00</b><small>دقيقة</small></div><div><b id="s">00</b><small>ثانية</small></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="pad" style="padding-top:0">
+  <div class="wrap">
+    <p class="eyebrow center reveal">الأسئلة الشائعة</p>
+    <h2 class="stitle reveal" style="text-align:center">كل شي خاصك تعرفه</h2>
+    <div class="faq">
+      <details class="reveal" open><summary>واش كتتوافق مع آيفون وأندرويد؟<span class="plus">+</span></summary><p>واه، PulsePods كتخدم مع الجوج بلا أي مشكل.</p></details>
+      <details class="reveal"><summary>شحال البطارية كتدوم؟<span class="plus">+</span></summary><p>6 ساعات فالسماعات وحدهم، و30 ساعة إجمالي مع العلبة الشاحنة.</p></details>
+      <details class="reveal"><summary>واش مقاومة للماء؟<span class="plus">+</span></summary><p>واه، معيار IPX5 كيحميها من العرق والمطر الخفيف.</p></details>
+      <details class="reveal"><summary>واش إلغاء الضوضاء فعّال؟<span class="plus">+</span></summary><p>واه، كيقلّل الضجة المحيطة بحوالي 35 ديسيبل — تجربة استماع نقية.</p></details>
+      <details class="reveal"><summary>شحال كياخد التوصيل؟<span class="plus">+</span></summary><p>من 24 إلى 72 ساعة فكامل المغرب، الدفع عند الاستلام.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="pad" id="order" style="padding-top:0">
+  <div class="wrap">
+    <div class="order reveal">
+      <div class="order-card">
+        <p class="eyebrow" style="margin-bottom:6px">كمّل الطلب</p>
+        <h2 style="font-size:23px;font-weight:800">PulsePods — سماعات لاسلكية</h2>
+        <div class="price-row"><div class="price-now">229 <span>د.م</span></div><div class="price-old">340 د.م</div><div class="save-tag">توفّر 111 د.م</div></div>
+        <p style="color:var(--muted);font-size:13px">الدفع عند الاستلام · توصيل سريع لكامل المغرب</p>
+        <button type="button" class="btn demo-cta" style="width:100%">تأكيد الطلب — عرض توضيحي فقط</button>
+        <div class="secure"><span>🔒 معلوماتك محمية</span><span>🚚 توصيل مضمون</span><span>💵 خلّص عند الباب</span></div>
+      </div>
+      <div class="trust-badges"><div>منتوج أصلي 100%</div><div>+4,100 طلب ناجح</div><div>توصيل 24-72 ساعة</div></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>© 2025 PulsePods — كل الحقوق محفوظة · صنع بعناية فالمغرب</footer>
+<div class="float-cta"><a href="#order" class="btn"><span>اطلب دابا · 229 د.م</span></a></div>
+
+<script>
+(function(){"use strict";
+  var rm=matchMedia("(prefers-reduced-motion:reduce)").matches;
+  window.addEventListener("load",function(){setTimeout(function(){document.getElementById("loader").classList.add("done");},250);});
+  setTimeout(function(){document.getElementById("loader").classList.add("done");},1600);
+
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target);}});},{threshold:.12,rootMargin:"0px 0px -8% 0px"});
+  document.querySelectorAll(".reveal").forEach(function(el){if(rm){el.classList.add("in");}else{io.observe(el);}});
+
+  var hdr=document.getElementById("hdr");addEventListener("scroll",function(){hdr.classList.toggle("stuck",scrollY>30);},{passive:true});
+
+  // build waveform bars
+  var wave=document.getElementById("wave"), bars=[];
+  for(var i=0;i<28;i++){var b=document.createElement("i");wave.appendChild(b);bars.push(b);}
+  function randomize(noisy){
+    bars.forEach(function(b){
+      var h = noisy ? (18+Math.random()*48) : (6+Math.random()*14);
+      b.style.height=h+"px";
+    });
+  }
+  randomize(true);
+  var waveTimer=setInterval(function(){randomize(wave.classList.contains("calm"));},260);
+
+  var tabs=document.querySelectorAll(".anctabs button");
+  var waveLabel=document.getElementById("waveLabel");
+  tabs.forEach(function(btn){
+    btn.addEventListener("click",function(){
+      tabs.forEach(function(b){b.classList.remove("active");});
+      btn.classList.add("active");
+      var calm = btn.dataset.mode==="calm";
+      wave.classList.toggle("calm",calm);
+      waveLabel.textContent = calm ? "هكا كيبان الصوت المحيط مع إلغاء الضوضاء ديال PulsePods" : "هكا كيبان الصوت المحيط بلا إلغاء الضوضاء";
+    });
+  });
+
+  var numIo=new IntersectionObserver(function(es){es.forEach(function(e){
+    if(!e.isIntersecting)return; numIo.unobserve(e.target);
+    var el=e.target, target=+el.dataset.target, start=performance.now(), dur=1300;
+    function tick(t){var p=Math.min(1,(t-start)/dur),eased=1-Math.pow(1-p,3);el.textContent=Math.round(target*eased);if(p<1)requestAnimationFrame(tick);}
+    if(rm){el.textContent=target;}else{requestAnimationFrame(tick);}
+  });},{threshold:.5});
+  document.querySelectorAll(".num").forEach(function(el){numIo.observe(el);});
+
+  var end=+sessionStorage.getItem("pp_end");if(!end){end=Date.now()+(3*3600+27*60)*1000;sessionStorage.setItem("pp_end",end);}
+  function tick2(){var d=Math.max(0,end-Date.now()),h=Math.floor(d/3.6e6),m=Math.floor(d%3.6e6/6e4),s=Math.floor(d%6e4/1e3);document.getElementById("h").textContent=("0"+h).slice(-2);document.getElementById("m").textContent=("0"+m).slice(-2);document.getElementById("s").textContent=("0"+s).slice(-2);}
+  tick2();setInterval(tick2,1000);
+})();
+</script>
+</body>
+</html>

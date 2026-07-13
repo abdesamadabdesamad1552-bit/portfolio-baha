@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>NOVA Beam — البروجيكتور الذكي | سينما فأي حيط، فأي مكان</title>
+<meta name="description" content="NOVA Beam بروجيكتور ذكي محمول بدقة Full HD وتصحيح تلقائي للصورة — حوّل أي حيط لشاشة سينما. الدفع عند الاستلام فكامل المغرب." />
+<meta name="theme-color" content="#05050a" />
+<link rel="preload" as="image" href="./img/hero.jpg" />
+<link rel="stylesheet" href="./fonts.css" />
+<style>
+:root{
+  --bg:#05050a; --bg2:#0b0b14; --fg:#eef0ff; --accent:#7c3aed; --accent-2:#00e5ff; --accent-3:#ff2fb0;
+  --muted:#9490b8; --line:rgba(238,240,255,.10); --card:rgba(124,58,237,.06);
+  --glass:rgba(11,11,20,.6); --shadow:0 30px 80px -30px rgba(124,58,237,.35);
+  --display:"Cairo","Cairo Fallback","Segoe UI",Tahoma,sans-serif;
+  --body:"IBM Plex Sans Arabic","IBM Plex Sans Arabic Fallback","Segoe UI",Tahoma,sans-serif;
+  --maxw:1160px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:hidden}
+body{font-family:var(--body);background:var(--bg);color:var(--fg);line-height:1.66;overflow-x:hidden;font-size:16px;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:var(--display);line-height:1.06;font-weight:800;letter-spacing:-.01em}
+img{max-width:100%;display:block}a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+:focus-visible{outline:2px solid var(--accent-2);outline-offset:3px;border-radius:4px}
+::selection{background:var(--accent-2);color:#05050a}
+
+.grid-bg{position:fixed;inset:0;z-index:-2;pointer-events:none;background-image:linear-gradient(rgba(124,58,237,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(124,58,237,.12) 1px,transparent 1px);background-size:52px 52px;-webkit-mask-image:radial-gradient(ellipse 70% 50% at 50% 0%,#000,transparent 75%);mask-image:radial-gradient(ellipse 70% 50% at 50% 0%,#000,transparent 75%)}
+.glow-orb{position:fixed;z-index:-1;border-radius:50%;filter:blur(90px);pointer-events:none;opacity:.35}
+.glow-orb.a{width:520px;height:520px;background:var(--accent);top:-10%;inset-inline-end:-10%}
+.glow-orb.b{width:420px;height:420px;background:var(--accent-2);bottom:0;inset-inline-start:-10%}
+
+.wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:22px}
+.pad{padding:clamp(70px,10vw,120px) 0}
+.eyebrow{font-family:var(--display);font-weight:700;font-size:11.5px;letter-spacing:.3em;text-transform:uppercase;background:linear-gradient(90deg,var(--accent-2),var(--accent-3));-webkit-background-clip:text;background-clip:text;color:transparent;display:inline-flex;align-items:center;gap:9px}
+.eyebrow.center{justify-content:center;width:100%;text-align:center}
+.stitle{font-size:clamp(30px,5.4vw,54px);margin-top:16px;font-weight:800}
+.lead{color:var(--muted);font-size:clamp(15px,2.3vw,18px);max-width:56ch}
+
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .85s cubic-bezier(.16,1,.3,1),transform .85s cubic-bezier(.16,1,.3,1)}
+.reveal.in{opacity:1;transform:none}
+.reveal[data-d="1"]{transition-delay:.1s}.reveal[data-d="2"]{transition-delay:.2s}.reveal[data-d="3"]{transition-delay:.3s}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+
+#loader{position:fixed;inset:0;z-index:1000;background:var(--bg);display:grid;place-items:center;transition:opacity .6s,visibility .6s}
+#loader.done{opacity:0;visibility:hidden}
+.loader-mark{font-family:var(--display);font-weight:800;font-size:22px;letter-spacing:.3em;background:linear-gradient(90deg,var(--accent-2),var(--accent-3),var(--accent-2));background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shimmer 1.3s linear infinite}
+@keyframes shimmer{to{background-position:-220% 0}}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;font-family:var(--display);font-weight:700;font-size:15px;padding:15px 30px;border-radius:12px;background:linear-gradient(120deg,var(--accent),var(--accent-3));color:#fff;box-shadow:0 0 0 1px rgba(255,255,255,.06) inset,0 16px 34px -16px rgba(124,58,237,.7);transition:transform .3s cubic-bezier(.16,1,.3,1),box-shadow .3s;position:relative}
+.btn:hover{transform:translateY(-3px);box-shadow:0 0 22px rgba(0,229,255,.35),0 20px 40px -16px rgba(124,58,237,.8)}
+.btn-ghost{background:transparent;color:var(--fg);box-shadow:inset 0 0 0 1px var(--line)}
+.btn-ghost:hover{box-shadow:inset 0 0 0 1px var(--accent-2)}
+
+header{position:fixed;top:0;inset-inline:0;z-index:90}
+.hbar{display:flex;align-items:center;justify-content:space-between;max-width:var(--maxw);margin-inline:auto;padding:16px 22px;transition:.3s}
+header.stuck .hbar{background:var(--glass);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+.brand{font-family:var(--display);font-weight:800;font-size:16px;letter-spacing:.08em;display:flex;align-items:center;gap:8px}
+.brand i{width:8px;height:8px;border-radius:2px;background:var(--accent-2);box-shadow:0 0 10px var(--accent-2)}
+
+/* HERO — beam projection effect */
+.hero{padding:140px 0 30px;text-align:center;position:relative;overflow:hidden}
+.beam-cone{position:absolute;top:40%;left:50%;transform:translateX(-50%);width:2px;height:0;background:linear-gradient(180deg,rgba(0,229,255,.5),transparent);z-index:0}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:999px;padding:8px 18px;font-size:12.5px;color:var(--accent-2)}
+.hero h1{font-size:clamp(42px,8.6vw,92px);margin-top:22px;letter-spacing:-.03em;position:relative;z-index:1}
+.hero h1 .g{background:linear-gradient(100deg,var(--accent-2),var(--accent-3));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{margin:20px auto 0;color:var(--muted);max-width:520px;font-size:clamp(16px,2.3vw,20px)}
+.hero-cta{margin-top:30px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.hero-stage{position:relative;max-width:760px;margin:52px auto 0;border-radius:24px;overflow:hidden;aspect-ratio:16/9;border:1px solid var(--line);box-shadow:var(--shadow)}
+.hero-stage img{width:100%;height:100%;object-fit:cover}
+.hero-stage::before{content:"";position:absolute;inset:0;background:linear-gradient(120deg,rgba(124,58,237,.18),transparent 50%,rgba(0,229,255,.18));mix-blend-mode:screen}
+.hero-chip{position:absolute;background:var(--glass);backdrop-filter:blur(12px);border:1px solid var(--line);border-radius:12px;padding:11px 15px;text-align:start}
+.hero-chip.a{top:14px;inset-inline-start:14px}
+.hero-chip.b{bottom:14px;inset-inline-end:14px}
+.hero-chip b{font-family:var(--display);font-weight:800;font-size:17px;color:var(--accent-2);display:block;line-height:1}
+.hero-chip span{font-size:10.5px;color:var(--muted)}
+
+/* SIGNATURE: animated spec readout / holographic panel */
+.holopanel{max-width:900px;margin:44px auto 0;border:1px solid var(--line);border-radius:24px;padding:36px;background:radial-gradient(120% 100% at 50% 0%,rgba(124,58,237,.1),transparent 60%)}
+.holo-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.holo-cell{text-align:center;padding:18px 10px;border-radius:14px;border:1px solid var(--line);position:relative;overflow:hidden}
+.holo-cell::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent,rgba(0,229,255,.06));opacity:0;transition:.4s}
+.holo-cell:hover::before{opacity:1}
+.holo-cell b{font-family:var(--display);font-weight:800;font-size:clamp(22px,3vw,30px);background:linear-gradient(120deg,var(--accent-2),var(--accent-3));-webkit-background-clip:text;background-clip:text;color:transparent;display:block}
+.holo-cell span{color:var(--muted);font-size:11.5px}
+
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;padding:54px 0}
+.frow:nth-child(even){direction:ltr}
+.frow:nth-child(even) .ftext{direction:rtl}
+.frow .fmedia{border-radius:22px;overflow:hidden;aspect-ratio:4/3;border:1px solid var(--line);position:relative}
+.frow .fmedia img{width:100%;height:100%;object-fit:cover}
+.frow .fmedia::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 60px rgba(124,58,237,.25)}
+.ftext .k{font-family:var(--display);font-weight:700;font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent-2)}
+.ftext h3{font-size:clamp(24px,3.4vw,36px);margin-top:12px}
+.ftext p{color:var(--muted);margin-top:14px;font-size:15.5px;line-height:1.75}
+
+.compare{overflow-x:auto;margin-top:40px;border-radius:20px;border:1px solid var(--line);background:var(--card)}
+table{width:100%;border-collapse:collapse;min-width:560px}
+th,td{padding:16px 18px;text-align:start;font-size:14.5px;border-bottom:1px solid var(--line)}
+thead th{font-family:var(--display);font-size:12.5px;color:var(--muted);font-weight:700}
+thead th.us{color:var(--accent-2)}
+tbody td:first-child{font-weight:600;font-family:var(--display)}
+.col-us{background:rgba(124,58,237,.08)}
+.yes{color:#00e5ff;font-weight:800}.no{color:#ff6f91}
+tr:last-child td{border-bottom:none}
+
+.tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:44px}
+.tcard{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px;transition:.4s}
+.tcard:hover{transform:translateY(-6px);border-color:rgba(0,229,255,.3)}
+.stars{color:var(--accent-2);letter-spacing:2px;font-size:14px}
+.tcard p{font-size:14.5px;margin-top:12px;color:var(--fg)}
+.tcard .who{margin-top:16px;display:flex;align-items:center;gap:10px}
+.tcard .who i{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--accent-2),var(--accent-3));display:grid;place-items:center;color:#05050a;font-family:var(--display);font-weight:800;font-size:14px}
+.tcard .who b{font-family:var(--display);display:block;font-size:13.5px}
+.tcard .who small{color:var(--muted);font-size:11.5px}
+
+.guarantee{background:linear-gradient(135deg,rgba(124,58,237,.14),transparent);border:1px solid rgba(124,58,237,.3);border-radius:22px;padding:clamp(30px,5vw,50px);display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center}
+.seal{width:100px;height:100px;border-radius:50%;display:grid;place-items:center;flex:none;background:linear-gradient(135deg,var(--accent-2),var(--accent));color:#05050a;text-align:center;font-family:var(--display);font-weight:800}
+.seal b{font-size:26px;line-height:1}.seal small{font-size:9.5px}
+.guarantee h3{font-size:clamp(20px,3.2vw,28px)}
+.guarantee p{color:var(--muted);margin-top:8px}
+.urgency{display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px 26px;margin-top:22px}
+.urgency .lbl{font-family:var(--display);font-weight:700}
+.urgency .lbl small{display:block;color:var(--muted);font-size:11.5px;font-weight:400}
+.count{display:flex;gap:9px}
+.count div{background:rgba(124,58,237,.1);border-radius:8px;padding:7px 11px;text-align:center;min-width:50px}
+.count b{font-family:var(--display);font-size:20px;display:block;color:var(--accent-2)}
+.count small{font-size:9px;color:var(--muted)}
+.stockbar{height:6px;border-radius:99px;background:var(--line);overflow:hidden;flex:1;min-width:120px}
+.stockbar i{display:block;height:100%;width:12%;background:linear-gradient(90deg,var(--accent),var(--accent-2))}
+
+.faq{max-width:740px;margin:40px auto 0}
+details{background:var(--card);border:1px solid var(--line);border-radius:14px;margin-bottom:10px;overflow:hidden}
+details[open]{border-color:rgba(0,229,255,.3)}
+summary{list-style:none;cursor:pointer;padding:17px 20px;font-family:var(--display);font-weight:700;font-size:15px;display:flex;justify-content:space-between;gap:14px}
+summary::-webkit-details-marker{display:none}
+summary .plus{color:var(--accent-2);font-size:16px;transition:.3s}
+details[open] summary .plus{transform:rotate(45deg)}
+details p{padding:0 20px 18px;color:var(--muted);font-size:14px}
+
+.order{max-width:500px;margin-inline:auto}
+.order-card{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:clamp(26px,5vw,38px)}
+.price-row{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:8px 0}
+.price-now{font-family:var(--display);font-weight:800;font-size:40px;background:linear-gradient(120deg,var(--accent-2),var(--accent-3));-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1}
+.price-now span{font-size:17px;color:var(--muted);-webkit-text-fill-color:var(--muted)}
+.price-old{color:var(--muted);text-decoration:line-through;font-size:16px}
+.save-tag{background:var(--accent);color:#fff;font-family:var(--display);font-weight:700;font-size:11px;padding:5px 10px;border-radius:6px}
+.field{margin-top:14px}
+.field label{font-size:12px;font-weight:600;color:var(--muted);margin-bottom:6px;display:block}
+.field input{width:100%;padding:14px 15px;border-radius:10px;border:1.4px solid var(--line);background:rgba(124,58,237,.04);font-family:var(--body);font-size:16px;color:var(--fg)}
+.field input:focus{outline:none;border-color:var(--accent-2)}
+.order .btn{width:100%;margin-top:18px}
+.secure{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:16px;color:var(--muted);font-size:11px}
+.trust-badges{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:22px}
+.trust-badges div{border:1px solid var(--line);border-radius:8px;padding:8px 12px;font-size:11px;font-family:var(--display);color:var(--muted)}
+
+.float-cta{position:fixed;inset-inline:0;bottom:0;z-index:80;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:linear-gradient(180deg,transparent,var(--bg) 35%);display:none;justify-content:center}
+.float-cta .btn{width:100%;max-width:420px}
+footer{border-top:1px solid var(--line);margin-top:40px;padding:36px 0 130px;text-align:center;color:var(--muted);font-size:12px}
+
+@media(max-width:900px){.holo-grid{grid-template-columns:1fr 1fr}.frow,.frow:nth-child(even){grid-template-columns:1fr;direction:rtl}.tgrid{grid-template-columns:1fr}.guarantee{grid-template-columns:1fr;text-align:center;justify-items:center}}
+@media(max-width:620px){.float-cta{display:flex}footer{padding-bottom:140px}}
+</style>
+</head>
+<body>
+<div class="grid-bg"></div><div class="glow-orb a"></div><div class="glow-orb b"></div>
+<div id="loader"><div class="loader-mark">NOVA BEAM</div></div>
+
+<header id="hdr"><div class="hbar">
+  <a href="#top" class="brand"><i></i>NOVA BEAM</a>
+  <a href="#order" class="btn" style="padding:10px 20px;font-size:13px">اطلب دابا</a>
+</div></header>
+
+<main id="top">
+<section class="hero">
+  <div class="beam-cone" id="beamCone"></div>
+  <div class="wrap">
+    <span class="hero-badge reveal">✦ سينما فأي حيط</span>
+    <h1 class="reveal" data-d="1">حوّل الحيط<br>ل<span class="g">شاشة سينما</span></h1>
+    <p class="reveal" data-d="2">NOVA Beam بروجيكتور ذكي محمول بدقة Full HD وتصحيح تلقائي للصورة — فأي وقت، فأي مكان.</p>
+    <div class="hero-cta reveal" data-d="3">
+      <a href="#order" class="btn">اطلب دابا — 599 د.م</a>
+      <a href="#holo" class="btn btn-ghost">اكتشف المواصفات</a>
+    </div>
+    <div class="hero-stage reveal" data-d="2">
+      <img src="./img/hero.jpg" alt="NOVA Beam بروجيكتور ذكي" fetchpriority="high" />
+      <div class="hero-chip a"><b>1080p</b><span>Full HD</span></div>
+      <div class="hero-chip b"><b>120″</b><span>حجم الشاشة الأقصى</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- SIGNATURE: holographic spec panel -->
+<section class="pad" id="holo">
+  <div class="wrap">
+    <p class="eyebrow center reveal">المواصفات</p>
+    <h2 class="stitle reveal" style="text-align:center">تقنية كتحسّها، ماشي غير تشوفها</h2>
+    <div class="holopanel reveal">
+      <div class="holo-grid">
+        <div class="holo-cell"><b class="num" data-target="1080">0</b><span>p دقة</span></div>
+        <div class="holo-cell"><b class="num" data-target="120">0</b><span>بوصة أقصى</span></div>
+        <div class="holo-cell"><b class="num" data-target="4">0</b><span>ساعات بطارية</span></div>
+        <div class="holo-cell"><b class="num" data-target="98">0</b><span>% رضا الزبناء</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pad" style="padding-top:0">
+  <div class="wrap">
+    <div class="frow">
+      <div class="fmedia reveal"><img src="./img/detail1.jpg" alt="تصحيح الصورة" /></div>
+      <div class="ftext reveal" data-d="1">
+        <span class="k">التصحيح الذكي</span>
+        <h3>الصورة كتتصحّح وحدها</h3>
+        <p>تقنية تصحيح أوتوماتيكية كتضبط الزاوية والوضوح مباشرة — بلا تعديل يدوي.</p>
+      </div>
+    </div>
+    <div class="frow">
+      <div class="ftext reveal">
+        <span class="k">الاتصال</span>
+        <h3>Wi-Fi و Bluetooth مدمجين</h3>
+        <p>اربطو مباشرة بهاتفك ولا اللابتوب وشغّل أي محتوى بلا كابلات.</p>
+      </div>
+      <div class="fmedia reveal" data-d="1"><img src="./img/detail2.jpg" alt="اتصال لاسلكي" /></div>
+    </div>
+    <div class="frow">
+      <div class="fmedia reveal"><img src="./img/lifestyle.jpg" alt="استعمال فالليل" /></div>
+      <div class="ftext reveal" data-d="1">
+        <span class="k">المحمولية</span>
+        <h3>خفيف، يدخل الشكارة</h3>
+        <p>حجم مضغوط وبطارية داخلية — خدو معاكم فالسفر ولا الكامبينغ ولا حديقة الدار.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pad" style="padding-top:0">
+  <div class="wrap">
+    <p class="eyebrow center reveal">المقارنة</p>
+    <h2 class="stitle reveal" style="text-align:center">علاش NOVA Beam</h2>
+    <div class="compare reveal">
+      <table>
+        <thead><tr><th>الميزة</th><th class="us">NOVA Beam</th><th>بروجيكتور عادي</th><th>تلفاز كبير</th></tr></thead>
+        <tbody>
+          <tr><td>محمول وخفيف</td><td class="col-us yes">✓</td><td class="no">غالباً ثقيل</td><td class="no">✕</td></tr>
+          <tr><td>تصحيح تلقائي للصورة</td><td class="col-us yes">✓</td><td class="no">يدوي</td><td>—</td></tr>
+          <tr><td>حجم الشاشة</td><td class="col-us yes">حتى 120″</td><td>حسب</td><td>محدود</td></tr>
+          <tr><td>الثمن</td><td class="col-us yes">اقتصادي</td><td>متوسط</td><td class="no">غالي بزاف</td></tr>
+          <tr><td>الدفع عند الاستلام</td><td class="col-us yes">✓</td><td>حسب</td><td>حسب</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="pad" style="padding-top:0">
+  <div class="wrap">
+    <p class="eyebrow center reveal">آراء الزبناء</p>
+    <h2 class="stitle reveal" style="text-align:center">+2,400 ليلة سينما فالدار</h2>
+    <div class="tgrid">
+      <div class="tcard reveal"><div class="stars">★★★★★</div><p>"ديرنا ليلة أفلام فحديقة الدار. الصورة واضحة والصوت مقبول بزاف للحجم ديالو."</p><div class="who"><i>ح</i><div><b>حمزة . و</b><small>الرباط</small></div></div></div>
+      <div class="tcard reveal" data-d="1"><div class="stars">★★★★★</div><p>"سهل الاستعمال، التصحيح التلقائي فرق كبير. ماخدمتش وقت باش نضبطو."</p><div class="who"><i>إ</i><div><b>إيمان . ت</b><small>الدار البيضاء</small></div></div></div>
+      <div class="tcard reveal" data-d="2"><div class="stars">★★★★★</div><p>"الدفع عند الاستلام طمّني. وصل بسرعة والجودة فاقت توقعاتي بهاد الثمن."</p><div class="who"><i>س</i><div><b>سفيان . ع</b><small>مراكش</small></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="pad" style="padding-top:0">
+  <div class="wrap">
+    <div class="guarantee reveal">
+      <div class="seal"><div><b>18M</b><small>ضمان</small></div></div>
+      <div><h3>ضمان 18 شهر على كل عيب تصنيع</h3><p>جودة مضمونة وثقة كاملة فالمنتوج.</p></div>
+    </div>
+    <div class="urgency reveal">
+      <div class="lbl">🎬 عرض محدود<small>الثمن يرجع لـ 850 د.م من بعد</small></div>
+      <div class="stockbar"><i></i></div>
+      <div class="count" id="count"><div><b id="h">00</b><small>ساعة</small></div><div><b id="m">00</b><small>دقيقة</small></div><div><b id="s">00</b><small>ثانية</small></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="pad" style="padding-top:0">
+  <div class="wrap">
+    <p class="eyebrow center reveal">الأسئلة الشائعة</p>
+    <h2 class="stitle reveal" style="text-align:center">كل شي خاصك تعرفه</h2>
+    <div class="faq">
+      <details class="reveal" open><summary>واش يخدم فالنهار؟<span class="plus">+</span></summary><p>أحسن نتيجة فالليل ولا فغرفة معتمة، ولكن يقدر يخدم فإضاءة خفيفة بجودة مقبولة.</p></details>
+      <details class="reveal"><summary>واش نقدر نربطو بهاتفي؟<span class="plus">+</span></summary><p>واه، فيه Wi-Fi و Bluetooth للاتصال المباشر بهاتفك ولا اللابتوب.</p></details>
+      <details class="reveal"><summary>شحال البطارية كتدوم؟<span class="plus">+</span></summary><p>حوالي 4 ساعات استعمال متواصل، وممكن نوصلوه بالكهرباء للاستعمال المطوّل.</p></details>
+      <details class="reveal"><summary>واش سهل نقلو؟<span class="plus">+</span></summary><p>واه، خفيف ومضغوط — يدخل فأي شكارة.</p></details>
+      <details class="reveal"><summary>شحال كياخد التوصيل؟<span class="plus">+</span></summary><p>من 24 إلى 72 ساعة فكامل المغرب، الدفع عند الاستلام.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="pad" id="order" style="padding-top:0">
+  <div class="wrap">
+    <div class="order reveal">
+      <div class="order-card">
+        <p class="eyebrow" style="margin-bottom:6px">كمّل الطلب</p>
+        <h2 style="font-size:23px;font-weight:800">NOVA Beam — بروجيكتور ذكي</h2>
+        <div class="price-row"><div class="price-now">599 <span>د.م</span></div><div class="price-old">850 د.م</div><div class="save-tag">توفّر 251 د.م</div></div>
+        <p style="color:var(--muted);font-size:13px">الدفع عند الاستلام · توصيل سريع لكامل المغرب</p>
+        <button type="button" class="btn demo-cta" style="width:100%">تأكيد الطلب — عرض توضيحي فقط</button>
+        <div class="secure"><span>🔒 معلوماتك محمية</span><span>🚚 توصيل مضمون</span><span>💵 خلّص عند الباب</span></div>
+      </div>
+      <div class="trust-badges"><div>منتوج أصلي 100%</div><div>+2,400 طلب ناجح</div><div>توصيل 24-72 ساعة</div></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>© 2025 NOVA Beam — كل الحقوق محفوظة · صنع بعناية فالمغرب</footer>
+<div class="float-cta"><a href="#order" class="btn">اطلب دابا · 599 د.م</a></div>
+
+<script>
+(function(){"use strict";
+  var rm=matchMedia("(prefers-reduced-motion:reduce)").matches;
+  window.addEventListener("load",function(){setTimeout(function(){document.getElementById("loader").classList.add("done");},300);});
+  setTimeout(function(){document.getElementById("loader").classList.add("done");},2000);
+
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target);}});},{threshold:.12,rootMargin:"0px 0px -8% 0px"});
+  document.querySelectorAll(".reveal").forEach(function(el){if(rm){el.classList.add("in");}else{io.observe(el);}});
+
+  var hdr=document.getElementById("hdr");addEventListener("scroll",function(){hdr.classList.toggle("stuck",scrollY>30);},{passive:true});
+
+  if(!rm){var bc=document.getElementById("beamCone");setTimeout(function(){bc.style.transition="height 1.4s cubic-bezier(.16,1,.3,1)";bc.style.height="260px";},600);}
+
+  var numIo=new IntersectionObserver(function(es){es.forEach(function(e){
+    if(!e.isIntersecting)return; numIo.unobserve(e.target);
+    var el=e.target, target=+el.dataset.target, start=performance.now(), dur=1300;
+    function tick(t){var p=Math.min(1,(t-start)/dur),eased=1-Math.pow(1-p,3);el.textContent=Math.round(target*eased);if(p<1)requestAnimationFrame(tick);}
+    if(rm){el.textContent=target;}else{requestAnimationFrame(tick);}
+  });},{threshold:.5});
+  document.querySelectorAll(".num").forEach(function(el){numIo.observe(el);});
+
+  var end=+sessionStorage.getItem("nb_end");if(!end){end=Date.now()+(6*3600+10*60)*1000;sessionStorage.setItem("nb_end",end);}
+  function tick2(){var d=Math.max(0,end-Date.now()),h=Math.floor(d/3.6e6),m=Math.floor(d%3.6e6/6e4),s=Math.floor(d%6e4/1e3);document.getElementById("h").textContent=("0"+h).slice(-2);document.getElementById("m").textContent=("0"+m).slice(-2);document.getElementById("s").textContent=("0"+s).slice(-2);}
+  tick2();setInterval(tick2,1000);
+})();
+</script>
+</body>
+</html>

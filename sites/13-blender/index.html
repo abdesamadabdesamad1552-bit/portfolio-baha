@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>FreshMix — الخلاط المحمول | عصير طازج فأي مكان، فـ 20 ثانية</title>
+<meta name="description" content="FreshMix خلاط محمول بشحن USB-C وقوة تقطيع عالية — اعصر فواكهك فأي وقت وأي مكان بلا كهرباء. الدفع عند الاستلام فكامل المغرب." />
+<meta name="theme-color" content="#eef5f5" />
+<link rel="preload" as="image" href="./img/hero.jpg" />
+<link rel="stylesheet" href="./fonts.css" />
+<style>
+:root{
+  --bg:#eef5f5; --fg:#0f2b2b; --accent:#0ea5a5; --accent-2:#5eead4; --accent-deep:#0b7a7a;
+  --pink:#ff8a65; --violet:#8b7ff0;
+  --muted:#4a6363; --line:rgba(15,43,43,.12); --card:rgba(255,255,255,.35);
+  --glass:rgba(255,255,255,.45); --shadow:0 30px 70px -28px rgba(15,43,43,.28);
+  --display:"Cairo","Cairo Fallback","Segoe UI",Tahoma,sans-serif;
+  --body:"IBM Plex Sans Arabic","IBM Plex Sans Arabic Fallback","Segoe UI",Tahoma,sans-serif;
+  --maxw:1160px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:hidden}
+body{font-family:var(--body);background:var(--bg);color:var(--fg);line-height:1.66;overflow-x:hidden;font-size:16px;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:var(--display);line-height:1.08;font-weight:800;letter-spacing:-.01em}
+img{max-width:100%;display:block}a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+::selection{background:var(--accent);color:#fff}
+
+/* floating gradient blobs behind glass */
+.blobs{position:fixed;inset:0;z-index:-2;overflow:hidden;pointer-events:none}
+.blobs i{position:absolute;border-radius:50%;filter:blur(60px);opacity:.55}
+.blobs i:nth-child(1){width:420px;height:420px;background:var(--accent-2);top:-8%;inset-inline-start:-8%;animation:float1 16s ease-in-out infinite}
+.blobs i:nth-child(2){width:360px;height:360px;background:var(--pink);top:20%;inset-inline-end:-10%;animation:float2 18s ease-in-out infinite}
+.blobs i:nth-child(3){width:320px;height:320px;background:var(--violet);bottom:-8%;inset-inline-start:20%;animation:float3 20s ease-in-out infinite}
+@keyframes float1{50%{transform:translate(40px,50px) scale(1.1)}}
+@keyframes float2{50%{transform:translate(-50px,30px) scale(1.15)}}
+@keyframes float3{50%{transform:translate(30px,-40px) scale(1.05)}}
+@media (prefers-reduced-motion:reduce){.blobs i{animation:none}}
+
+.wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:22px}
+.pad{padding:clamp(70px,10vw,120px) 0}
+.eyebrow{font-family:var(--display);font-weight:700;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent-deep);display:inline-flex;align-items:center;gap:8px}
+.eyebrow.center{justify-content:center;width:100%;text-align:center}
+.stitle{font-size:clamp(30px,5.2vw,52px);margin-top:14px;font-weight:800}
+.lead{color:var(--muted);font-size:clamp(15px,2.3vw,18px);max-width:56ch}
+
+.reveal{opacity:0;transform:translateY(24px) scale(.98);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+.reveal.in{opacity:1;transform:none}
+.reveal[data-d="1"]{transition-delay:.1s}.reveal[data-d="2"]{transition-delay:.2s}.reveal[data-d="3"]{transition-delay:.3s}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+
+/* glass surface — the defining visual language */
+.glass{background:var(--glass);backdrop-filter:blur(22px) saturate(1.4);-webkit-backdrop-filter:blur(22px) saturate(1.4);border:1px solid rgba(255,255,255,.5);box-shadow:var(--shadow)}
+
+#loader{position:fixed;inset:0;z-index:1000;background:var(--bg);display:grid;place-items:center;transition:opacity .6s,visibility .6s}
+#loader.done{opacity:0;visibility:hidden}
+.loader-mark{width:44px;height:44px;border-radius:50%;border:3px solid rgba(14,165,165,.2);border-top-color:var(--accent);animation:spin .9s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;font-family:var(--display);font-weight:700;font-size:15px;padding:15px 28px;border-radius:16px;background:linear-gradient(135deg,var(--accent-2),var(--accent));color:#04302d;box-shadow:0 14px 32px -14px rgba(14,165,165,.55);transition:transform .3s cubic-bezier(.16,1,.3,1),box-shadow .3s}
+.btn:hover{transform:translateY(-3px);box-shadow:0 20px 40px -14px rgba(14,165,165,.65)}
+.btn-ghost{background:rgba(255,255,255,.4);backdrop-filter:blur(12px);color:var(--fg);box-shadow:inset 0 0 0 1px rgba(255,255,255,.6)}
+.btn-ghost:hover{background:rgba(255,255,255,.6)}
+
+header{position:fixed;top:0;inset-inline:0;z-index:90}
+.hbar{max-width:var(--maxw);margin:14px auto 0;display:flex;align-items:center;justify-content:space-between;padding:12px 20px;border-radius:20px;transition:.3s}
+header.stuck .hbar{background:var(--glass);backdrop-filter:blur(20px) saturate(1.4);border:1px solid rgba(255,255,255,.5);box-shadow:var(--shadow)}
+.brand{font-family:var(--display);font-weight:800;font-size:16px;display:flex;align-items:center;gap:8px}
+.brand i{width:9px;height:9px;border-radius:50%;background:linear-gradient(135deg,var(--accent-2),var(--accent))}
+
+/* HERO — glass card floating over blobs */
+.hero{padding:150px 0 40px;text-align:center}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:9px 18px;border-radius:999px;font-size:13px;font-weight:600;color:var(--accent-deep)}
+.hero h1{font-size:clamp(40px,8vw,86px);margin-top:22px;letter-spacing:-.03em}
+.hero h1 em{font-style:normal;background:linear-gradient(120deg,var(--accent-deep),var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{margin:18px auto 0;color:var(--muted);max-width:520px;font-size:clamp(16px,2.3vw,20px)}
+.hero-cta{margin-top:28px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.hero-stage{position:relative;max-width:640px;margin:50px auto 0;border-radius:32px;padding:30px;}
+.hero-stage img{width:100%;border-radius:22px;aspect-ratio:16/10;object-fit:cover}
+.hero-pill{position:absolute;border-radius:16px;padding:12px 16px;text-align:start}
+.hero-pill.a{top:-14px;inset-inline-start:-14px}
+.hero-pill.b{bottom:-14px;inset-inline-end:-14px}
+.hero-pill b{font-family:var(--display);font-weight:800;font-size:18px;color:var(--accent-deep);display:block;line-height:1}
+.hero-pill span{font-size:11px;color:var(--muted)}
+
+/* SIGNATURE: blend speed dial + fruit chips ring */
+.blenddemo{max-width:560px;margin:44px auto 0;padding:36px;border-radius:28px;text-align:center}
+.blenddemo h4{font-size:14px;color:var(--muted);font-weight:600}
+.dial{position:relative;width:190px;height:190px;margin:24px auto}
+.dial svg{width:100%;height:100%;transform:rotate(-90deg)}
+.dial .center{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:15px;color:var(--accent-deep);text-align:center;line-height:1.3}
+.fruits{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:20px}
+.fruits span{background:rgba(255,255,255,.5);border-radius:999px;padding:8px 15px;font-size:13px;font-weight:600}
+
+/* feature cards — glass tiles */
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:44px}
+.tile{border-radius:24px;padding:30px;transition:.4s}
+.tile:hover{transform:translateY(-8px)}
+.tile .ico{width:52px;height:52px;border-radius:16px;display:grid;place-items:center;background:rgba(255,255,255,.5);color:var(--accent-deep);margin-bottom:16px}
+.tile h3{font-size:19px}.tile p{color:var(--muted);font-size:14.5px;margin-top:8px}
+
+/* before/after */
+.ba{position:relative;max-width:820px;margin:44px auto 0;border-radius:28px;overflow:hidden;aspect-ratio:16/10;touch-action:pan-y;cursor:ew-resize;user-select:none}
+.ba img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ba .after-wrap{position:absolute;inset:0;clip-path:inset(0 50% 0 0)}
+.ba-tag{position:absolute;top:14px;z-index:4;font-family:var(--display);font-weight:700;font-size:12px;padding:7px 14px;border-radius:999px;color:#04302d;backdrop-filter:blur(8px)}
+.ba-tag.b{right:14px;background:rgba(255,255,255,.75)}.ba-tag.a{left:14px;background:rgba(94,234,212,.85)}
+.ba-line{position:absolute;top:0;bottom:0;width:3px;background:rgba(255,255,255,.9);z-index:5;left:50%;transform:translateX(-50%)}
+.ba-handle{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:6;width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,.7);backdrop-filter:blur(10px);display:grid;place-items:center}
+.ba-handle svg{color:var(--accent-deep)}
+
+.compare{overflow-x:auto;margin-top:40px;border-radius:22px}
+table{width:100%;border-collapse:collapse;min-width:560px}
+th,td{padding:16px 18px;text-align:start;font-size:14.5px;border-bottom:1px solid rgba(15,43,43,.08)}
+thead th{font-family:var(--display);font-size:12.5px;color:var(--muted);font-weight:700}
+thead th.us{color:var(--accent-deep)}
+tbody td:first-child{font-weight:600;font-family:var(--display)}
+.col-us{background:rgba(94,234,212,.15)}
+.yes{color:#0b8a5a;font-weight:800}.no{color:#c4553f}
+tr:last-child td{border-bottom:none}
+
+.tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:44px}
+.tcard{border-radius:22px;padding:26px;transition:.4s}
+.tcard:hover{transform:translateY(-6px)}
+.stars{color:var(--accent-deep);letter-spacing:2px;font-size:14px}
+.tcard p{font-size:14.5px;margin-top:12px}
+.tcard .who{margin-top:16px;display:flex;align-items:center;gap:10px}
+.tcard .who i{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--accent-2),var(--pink));display:grid;place-items:center;color:#04302d;font-family:var(--display);font-weight:800;font-size:14px}
+.tcard .who b{font-family:var(--display);display:block;font-size:13.5px}
+.tcard .who small{color:var(--muted);font-size:11.5px}
+
+.guarantee{border-radius:26px;padding:clamp(30px,5vw,52px);display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center}
+.seal{width:104px;height:104px;border-radius:50%;display:grid;place-items:center;flex:none;background:linear-gradient(135deg,var(--accent-2),var(--accent-deep));color:#fff;text-align:center;font-family:var(--display);font-weight:800}
+.seal b{font-size:26px;line-height:1}.seal small{font-size:9.5px}
+.guarantee h3{font-size:clamp(20px,3.3vw,28px)}
+.guarantee p{color:var(--muted);margin-top:8px}
+.urgency{display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;border-radius:20px;padding:22px 28px;margin-top:24px}
+.urgency .lbl{font-family:var(--display);font-weight:700;color:var(--fg)}
+.urgency .lbl small{display:block;color:var(--muted);font-size:12px;font-weight:400}
+.count{display:flex;gap:9px}
+.count div{background:rgba(255,255,255,.5);border-radius:10px;padding:8px 12px;text-align:center;min-width:50px}
+.count b{font-family:var(--display);font-size:21px;display:block;color:var(--accent-deep)}
+.count small{font-size:9.5px;color:var(--muted)}
+.stockbar{height:7px;border-radius:99px;background:rgba(255,255,255,.5);overflow:hidden;flex:1;min-width:120px}
+.stockbar i{display:block;height:100%;width:21%;background:linear-gradient(90deg,var(--accent),var(--pink))}
+
+.faq{max-width:740px;margin:40px auto 0}
+details{border-radius:16px;margin-bottom:10px;overflow:hidden}
+summary{list-style:none;cursor:pointer;padding:18px 20px;font-family:var(--display);font-weight:700;font-size:15px;display:flex;justify-content:space-between;gap:14px}
+summary::-webkit-details-marker{display:none}
+summary .plus{color:var(--accent-deep);font-size:17px;transition:.3s}
+details[open] summary .plus{transform:rotate(45deg)}
+details p{padding:0 20px 18px;color:var(--muted);font-size:14px}
+
+.order{max-width:500px;margin-inline:auto}
+.order-card{border-radius:28px;padding:clamp(26px,5vw,40px)}
+.price-row{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:8px 0}
+.price-now{font-family:var(--display);font-weight:800;font-size:40px;color:var(--accent-deep);line-height:1}
+.price-now span{font-size:17px;color:var(--muted)}
+.price-old{color:var(--muted);text-decoration:line-through;font-size:16px}
+.save-tag{background:var(--accent);color:#fff;font-family:var(--display);font-weight:700;font-size:11px;padding:5px 11px;border-radius:999px}
+.field{margin-top:14px}
+.field label{font-size:12px;font-weight:600;color:var(--muted);margin-bottom:6px;display:block}
+.field input{width:100%;padding:14px 15px;border-radius:14px;border:1.4px solid rgba(255,255,255,.6);background:rgba(255,255,255,.65);font-family:var(--body);font-size:16px;color:var(--fg)}
+.field input:focus{outline:none;border-color:var(--accent)}
+.order .btn{width:100%;margin-top:18px}
+.secure{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:16px;color:var(--muted);font-size:11px}
+.trust-badges{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:22px}
+.trust-badges div{border-radius:10px;padding:9px 13px;font-size:11px;font-family:var(--display);font-weight:600;color:var(--muted)}
+
+.float-cta{position:fixed;inset-inline:0;bottom:0;z-index:80;padding:12px 16px calc(12px + env(safe-area-inset-bottom));display:none;justify-content:center}
+.float-cta .btn{width:100%;max-width:420px}
+footer{margin-top:40px;padding:36px 0 130px;text-align:center;color:var(--muted);font-size:12px}
+
+@media(max-width:900px){.tiles,.tgrid{grid-template-columns:1fr}.guarantee{grid-template-columns:1fr;text-align:center;justify-items:center}}
+@media(max-width:620px){.float-cta{display:flex}footer{padding-bottom:140px}}
+</style>
+</head>
+<body>
+<div class="blobs"><i></i><i></i><i></i></div>
+<div id="loader"><div class="loader-mark"></div></div>
+
+<header id="hdr"><div class="hbar">
+  <a href="#top" class="brand"><i></i>FreshMix</a>
+  <a href="#order" class="btn" style="padding:10px 20px;font-size:13px">اطلب دابا</a>
+</div></header>
+
+<main id="top">
+<section class="hero">
+  <div class="wrap">
+    <span class="hero-badge glass reveal">🍓 عصير طازج فـ 20 ثانية</span>
+    <h1 class="reveal" data-d="1">فواكهك… <em>عصير</em><br>فأي مكان</h1>
+    <p class="reveal" data-d="2">خلاط محمول بشحن USB-C وقوة تقطيع عالية — اعصر متى بغيتي، فين بغيتي، بلا كهرباء.</p>
+    <div class="hero-cta reveal" data-d="3">
+      <a href="#order" class="btn">اطلب دابا — 279 د.م</a>
+      <a href="#ba" class="btn btn-ghost glass">شوف قبل / بعد</a>
+    </div>
+    <div class="hero-stage glass reveal" data-d="2">
+      <img src="./img/hero.jpg" alt="FreshMix خلاط محمول" fetchpriority="high" />
+      <div class="hero-pill glass a"><b>20 ثانية</b><span>وقت الخلط</span></div>
+      <div class="hero-pill glass b"><b>USB-C</b><span>شحن سريع</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- SIGNATURE: speed dial + fruits -->
+<section class="pad">
+  <div class="wrap">
+    <p class="eyebrow center reveal">قوة التقطيع</p>
+    <h2 class="stitle reveal" style="text-align:center">شفرات كتخلط أي حاجة</h2>
+    <div class="blenddemo glass reveal" id="dialBox">
+      <h4>محاكاة سرعة الخلط</h4>
+      <div class="dial">
+        <svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="52" fill="none" stroke="rgba(14,165,165,.15)" stroke-width="9"/><circle id="dialCircle" cx="60" cy="60" r="52" fill="none" stroke="url(#dg)" stroke-width="9" stroke-linecap="round" stroke-dasharray="327" stroke-dashoffset="327" style="transition:stroke-dashoffset 1.8s cubic-bezier(.16,1,.3,1)"/><defs><linearGradient id="dg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5eead4"/><stop offset="1" stop-color="#0ea5a5"/></linearGradient></defs></svg>
+        <div class="center">22,000<br>دورة/دقيقة</div>
+      </div>
+      <div class="fruits">
+        <span>🍓 فراولة</span><span>🍌 موز</span><span>🥭 مانجو</span><span>🧊 تلج</span><span>🥬 خضرة</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pad" style="padding-top:0">
+  <div class="wrap">
+    <div class="tiles">
+      <div class="tile glass reveal"><div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></div><h3>خلط سريع وقوي</h3><p>شفرات ستانلس ستيل كتخلط الفواكه والتلج فثواني معدودة.</p></div>
+      <div class="tile glass reveal" data-d="1"><div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="7" y="2" width="10" height="18" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M10 6h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div><h3>شحن USB-C</h3><p>يشحن بأي شاحن هاتف عادي — بلا احتياج لمنفذ خاص.</p></div>
+      <div class="tile glass reveal" data-d="2"><div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M4 12s3-7 8-7 8 7 8 7-3 7-8 7-8-7-8-7Z" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="2.5" stroke="currentColor" stroke-width="1.6"/></svg></div><h3>سهل التنظيف</h3><p>اغسلو بالماء غير — الكوب والشفرات قابلين للفصل بسهولة.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="ba" class="pad" style="padding-top:0">
+  <div class="wrap">
+    <p class="eyebrow center reveal">النتيجة</p>
+    <h2 class="stitle reveal" style="text-align:center">من فواكه… لعصير فثواني</h2>
+    <div class="ba glass reveal" id="baSlider">
+      <img src="./img/detail1.jpg" alt="فواكه" class="before" loading="lazy" decoding="async" />
+      <div class="after-wrap"><img src="./img/detail2.jpg" alt="عصير جاهز" loading="lazy" decoding="async" /></div>
+      <span class="ba-tag b">قبل</span><span class="ba-tag a">بعد 20 ثانية</span>
+      <div class="ba-line" id="baLine"></div>
+      <div class="ba-handle" id="baHandle"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M8 7 3 12l5 5M16 7l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    </div>
+  </div>
+</section>
+
+<section class="pad" style="padding-top:0">
+  <div class="wrap">
+    <p class="eyebrow center reveal">المقارنة</p>
+    <h2 class="stitle reveal" style="text-align:center">علاش FreshMix</h2>
+    <div class="compare glass reveal">
+      <table>
+        <thead><tr><th>الميزة</th><th class="us">FreshMix</th><th>خلاط كهربائي</th><th>عصير جاهز</th></tr></thead>
+        <tbody>
+          <tr><td>يخدم بلا كهرباء</td><td class="col-us yes">✓</td><td class="no">✕</td><td class="col-us yes">✓</td></tr>
+          <tr><td>طبيعي 100%</td><td class="col-us yes">✓</td><td class="col-us yes">✓</td><td class="no">غالباً سكر مضاف</td></tr>
+          <tr><td>محمول وخفيف</td><td class="col-us yes">✓</td><td class="no">✕</td><td class="col-us yes">✓</td></tr>
+          <tr><td>الدفع عند الاستلام</td><td class="col-us yes">✓</td><td>حسب</td><td>—</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="pad" style="padding-top:0">
+  <div class="wrap">
+    <p class="eyebrow center reveal">آراء الزبناء</p>
+    <h2 class="stitle reveal" style="text-align:center">+1,900 كوب عصير كل يوم</h2>
+    <div class="tgrid">
+      <div class="tcard glass reveal"><div class="stars">★★★★★</div><p>"كنديرو معايا للمكتب. عصير طازج كل صباح بلا ما نحتاج كهرباء. رائع."</p><div class="who"><i>ل</i><div><b>ليلى . س</b><small>الدار البيضاء</small></div></div></div>
+      <div class="tcard glass reveal" data-d="1"><div class="stars">★★★★★</div><p>"قوي بزاف مع التلج والفواكه الصلبة. الشحن سريع وكيدوم بزاف."</p><div class="who"><i>ط</i><div><b>طارق . ن</b><small>الرباط</small></div></div></div>
+      <div class="tcard glass reveal" data-d="2"><div class="stars">★★★★★</div><p>"الدفع عند الاستلام سهّل عليا. وصل بسرعة وسهل التنظيف بزاف."</p><div class="who"><i>ن</i><div><b>نعيمة . ب</b><small>مراكش</small></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="pad" style="padding-top:0">
+  <div class="wrap">
+    <div class="guarantee glass reveal">
+      <div class="seal"><div><b>1Y</b><small>ضمان كامل</small></div></div>
+      <div><h3>ضمان سنة كاملة</h3><p>إلا طرا أي عطل، نبدّلوه ليك بلا تعقيد.</p></div>
+    </div>
+    <div class="urgency glass reveal">
+      <div class="lbl">🍹 عرض الصيف ساري<small>الثمن يرجع لـ 390 د.م من بعد</small></div>
+      <div class="stockbar"><i></i></div>
+      <div class="count" id="count"><div><b id="h">00</b><small>ساعة</small></div><div><b id="m">00</b><small>دقيقة</small></div><div><b id="s">00</b><small>ثانية</small></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="pad" style="padding-top:0">
+  <div class="wrap">
+    <p class="eyebrow center reveal">الأسئلة الشائعة</p>
+    <h2 class="stitle reveal" style="text-align:center">كل شي خاصك تعرفه</h2>
+    <div class="faq">
+      <details class="reveal glass" open><summary>واش يقدر يخلط التلج؟<span class="plus">+</span></summary><p>واه، الشفرات قوية بما يكفي باش تخلط التلج والفواكه الصلبة بسهولة.</p></details>
+      <details class="reveal glass"><summary>شحال كياخد باش يتشحن؟<span class="plus">+</span></summary><p>حوالي ساعة بشاحن USB-C عادي، وكيقدر يخلط 15-20 كوب بشحنة وحدة.</p></details>
+      <details class="reveal glass"><summary>واش سهل التنظيف؟<span class="plus">+</span></summary><p>واه، الكوب قابل للفصل ويتغسل بالماء مباشرة.</p></details>
+      <details class="reveal glass"><summary>واش آمن للاستعمال؟<span class="plus">+</span></summary><p>واه، مزوّد بحماية أوتوماتيكية كتوقف الشفرات إلا تحل الغطاء.</p></details>
+      <details class="reveal glass"><summary>شحال كياخد التوصيل؟<span class="plus">+</span></summary><p>من 24 إلى 72 ساعة فكامل المغرب، الدفع عند الاستلام.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="pad" id="order" style="padding-top:0">
+  <div class="wrap">
+    <div class="order reveal">
+      <div class="order-card glass">
+        <p class="eyebrow" style="margin-bottom:6px">كمّل الطلب</p>
+        <h2 style="font-size:23px;font-weight:800">FreshMix — خلاط محمول</h2>
+        <div class="price-row"><div class="price-now">279 <span>د.م</span></div><div class="price-old">390 د.م</div><div class="save-tag">توفّر 111 د.م</div></div>
+        <p style="color:var(--muted);font-size:13px">الدفع عند الاستلام · توصيل سريع لكامل المغرب</p>
+        <button type="button" class="btn demo-cta" style="width:100%">تأكيد الطلب — عرض توضيحي فقط</button>
+        <div class="secure"><span>🔒 معلوماتك محمية</span><span>🚚 توصيل مضمون</span><span>💵 خلّص عند الباب</span></div>
+      </div>
+      <div class="trust-badges"><div class="glass">منتوج أصلي 100%</div><div class="glass">+1,900 طلب ناجح</div><div class="glass">توصيل 24-72 ساعة</div></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>© 2025 FreshMix — كل الحقوق محفوظة · صنع بعناية فالمغرب</footer>
+<div class="float-cta"><a href="#order" class="btn">اطلب دابا · 279 د.م</a></div>
+
+<script>
+(function(){"use strict";
+  var rm=matchMedia("(prefers-reduced-motion:reduce)").matches;
+  window.addEventListener("load",function(){setTimeout(function(){document.getElementById("loader").classList.add("done");},300);});
+  setTimeout(function(){document.getElementById("loader").classList.add("done");},2000);
+
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target);}});},{threshold:.12,rootMargin:"0px 0px -8% 0px"});
+  document.querySelectorAll(".reveal").forEach(function(el){if(rm){el.classList.add("in");}else{io.observe(el);}});
+
+  var hdr=document.getElementById("hdr");addEventListener("scroll",function(){hdr.classList.toggle("stuck",scrollY>30);},{passive:true});
+
+  var dIo=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");dIo.unobserve(e.target);var c=document.getElementById("dialCircle");setTimeout(function(){c.style.strokeDashoffset=327*(1-.78);},100);}});},{threshold:.4});
+  var db=document.getElementById("dialBox"); if(db) dIo.observe(db);
+
+  var s=document.getElementById("baSlider"),line=document.getElementById("baLine"),handle=document.getElementById("baHandle"),aw=s.querySelector(".after-wrap"),drag=false;
+  function set(x){var r=s.getBoundingClientRect(),p=Math.min(98,Math.max(2,(x-r.left)/r.width*100));aw.style.clipPath="inset(0 "+(100-p)+"% 0 0)";line.style.left=p+"%";handle.style.left=p+"%";}
+  function px(e){return e.touches?e.touches[0].clientX:e.clientX;}
+  s.addEventListener("pointerdown",function(e){drag=true;set(px(e));});
+  addEventListener("pointermove",function(e){if(drag)set(px(e));},{passive:true});
+  addEventListener("pointerup",function(){drag=false;});
+  s.addEventListener("touchmove",function(e){set(px(e));},{passive:true});
+
+  var end=+sessionStorage.getItem("fm_end");if(!end){end=Date.now()+(3*3600+55*60)*1000;sessionStorage.setItem("fm_end",end);}
+  function tick(){var d=Math.max(0,end-Date.now()),h=Math.floor(d/3.6e6),m=Math.floor(d%3.6e6/6e4),s2=Math.floor(d%6e4/1e3);document.getElementById("h").textContent=("0"+h).slice(-2);document.getElementById("m").textContent=("0"+m).slice(-2);document.getElementById("s").textContent=("0"+s2).slice(-2);}
+  tick();setInterval(tick,1000);
+})();
+</script>
+</body>
+</html>

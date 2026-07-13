@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>BAHA — Portfolio Landing Pages</title>
+<style>
+  :root{--ink:#1a1520}
+  *{box-sizing:border-box}
+  body{
+    margin:0;font-family:"Segoe UI","Cairo","Tahoma",sans-serif;color:var(--ink);
+    background:
+      radial-gradient(ellipse 60% 40% at 10% 0%, #fde68a55, transparent 50%),
+      radial-gradient(ellipse 50% 40% at 90% 10%, #f9a8d455, transparent 50%),
+      radial-gradient(ellipse 50% 40% at 50% 100%, #99f6e455, transparent 50%),
+      linear-gradient(180deg,#fffdf8,#f8f5ff);
+    min-height:100vh;padding:40px 20px 80px;
+  }
+  .wrap{max-width:1200px;margin:0 auto}
+  .badge{display:inline-block;background:#fff;border:1px solid #e8dff0;border-radius:999px;padding:8px 14px;font-size:12px;font-weight:700;letter-spacing:.08em;color:#9d174d;margin-bottom:16px}
+  h1{font-size:clamp(2rem,5vw,3.4rem);line-height:1.15;margin:0 0 12px;font-weight:800}
+  h1 span{background:linear-gradient(90deg,#e11d48,#d4a017,#0d9488);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .lead{max-width:40rem;color:#6b6280;font-size:1.05rem;margin:0 0 30px;line-height:1.6}
+  h2.section{font-size:1.3rem;font-weight:800;margin:44px 0 6px;display:flex;align-items:center;gap:10px}
+  h2.section small{font-size:.75rem;font-weight:600;color:#6b6280;background:#fff;border:1px solid #e8dff0;border-radius:999px;padding:4px 10px}
+  .grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
+  .card{
+    display:flex;flex-direction:column;gap:8px;padding:22px;border-radius:20px;
+    text-decoration:none;color:inherit;background:var(--b);
+    border:1px solid color-mix(in srgb, var(--c) 35%, transparent);
+    box-shadow:0 10px 30px rgba(40,20,60,.06);
+    transition:transform .25s, box-shadow .25s;
+  }
+  .card:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(40,20,60,.12)}
+  .card.dark{color:#f2ede2}
+  .card.dark em{color:#a8a3b8}
+  .dot{width:12px;height:12px;border-radius:50%;background:var(--c)}
+  .card b{font-size:1.15rem}
+  .card em{font-style:normal;color:#6b6280;font-size:.9rem}
+  .go{margin-top:8px;color:var(--c);font-weight:700;font-size:.9rem}
+  footer{max-width:1200px;margin:60px auto 0;color:#9a94a8;font-size:.8rem;text-align:center}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="badge">BAHA · MAROC · COD · دارجة</div>
+    <h1>بورتفوليو <span>لاندينغ بيج</span></h1>
+    <p class="lead">15 صفحة هبوط جاهزة للعرض — 10 صفحات كوزمتيك بالدارجة المغربية، و5 صفحات Gadgets عالمية بهويات بصرية مختلفة تماماً (Apple Style، Dark Luxury، Glassmorphism، Futuristic Neon، Tech Startup).</p>
+
+    <h2 class="section">🧴 كوزمتيك — عربية مغربية <small>10 صفحات</small></h2>
+    <div class="grid">
+    <a class='card' href='./sites/01-lumiere-pure/' style='--c:#D4A017;--b:#FFF8F2'><span class='dot'></span><b>سيروم لوميير بيور</b><em>توحيد اللون</em><span class='go'>فتح الديمو ←</span></a>
+    <a class='card' href='./sites/02-densite-capillaire/' style='--c:#6C4DFF;--b:#F4F0FF'><span class='dot'></span><b>سيروم كثافة الشعر</b><em>تكثيف الشعر</em><span class='go'>فتح الديمو ←</span></a>
+    <a class='card' href='./sites/03-regard-clair/' style='--c:#E11D48;--b:#FFF5F7'><span class='dot'></span><b>كريم نظرة صافية</b><em>الهالات</em><span class='go'>فتح الديمو ←</span></a>
+    <a class='card dark' href='./sites/04-masque-dore/' style='--c:#E0851F;--b:#0e1510'><span class='dot'></span><b>قناع الذهبي</b><em>إشراق</em><span class='go'>فتح الديمو ←</span></a>
+    <a class='card' href='./sites/05-gel-purete/' style='--c:#0D9488;--b:#F0FDFA'><span class='dot'></span><b>جل النقاء</b><em>بشرة دهنية</em><span class='go'>فتح الديمو ←</span></a>
+    <a class='card' href='./sites/06-velours-paris/' style='--c:#BE123C;--b:#FFF7FB'><span class='dot'></span><b>سيروم فلور باريس</b><em>ترطيب</em><span class='go'>فتح الديمو ←</span></a>
+    <a class='card' href='./sites/07-actifforme/' style='--c:#EA580C;--b:#FFF7ED'><span class='dot'></span><b>جل أكتيفورم</b><em>رياضة</em><span class='go'>فتح الديمو ←</span></a>
+    <a class='card dark' href='./sites/08-noir-homme/' style='--c:#E0851F;--b:#0e1510'><span class='dot'></span><b>زيت نوار أوم</b><em>عناية الرجالة</em><span class='go'>فتح الديمو ←</span></a>
+    <a class='card' href='./sites/09-eclat-aisselles/' style='--c:#E11D48;--b:#FFF1F2'><span class='dot'></span><b>كريم صفاء الإبط</b><em>توحيد اللون</em><span class='go'>فتح الديمو ←</span></a>
+    <a class='card' href='./sites/10-routine-complete/' style='--c:#16A34A;--b:#F0FDF4'><span class='dot'></span><b>الروتين الكامل</b><em>مجموعة</em><span class='go'>فتح الديمو ←</span></a>
+    </div>
+
+    <h2 class="section">⚡ Gadgets — International <small>5 صفحات</small></h2>
+    <div class="grid">
+    <a class='card' href='./sites/11-power-bank/' style='--c:#0071E3;--b:#FBFBFD'><span class='dot'></span><b>Aura Bank</b><em>Apple Style — باور بانك مغناطيسي</em><span class='go'>فتح الديمو ←</span></a>
+    <a class='card dark' href='./sites/12-smart-watch/' style='--c:#D4AF37;--b:#0a0a0c'><span class='dot'></span><b>Vega Chrono</b><em>Dark Luxury — ساعة ذكية</em><span class='go'>فتح الديمو ←</span></a>
+    <a class='card' href='./sites/13-blender/' style='--c:#0EA5A5;--b:#EEF5F5'><span class='dot'></span><b>FreshMix</b><em>Glassmorphism — خلاط محمول</em><span class='go'>فتح الديمو ←</span></a>
+    <a class='card dark' href='./sites/14-projector/' style='--c:#7C3AED;--b:#05050a'><span class='dot'></span><b>NOVA Beam</b><em>Futuristic Neon — بروجيكتور ذكي</em><span class='go'>فتح الديمو ←</span></a>
+    <a class='card' href='./sites/15-earbuds/' style='--c:#6D5BFF;--b:#FFFFFF'><span class='dot'></span><b>PulsePods</b><em>Tech Startup — سماعات لاسلكية</em><span class='go'>فتح الديمو ←</span></a>
+    </div>
+
+    <footer>© 2025 BAHA — بورتفوليو تصميم لاندينغ بيج · صنع بعناية فالمغرب</footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>لوميير بيور — سيروم الإشراقة | البقع كتخفّ والبشرة كتشعل</title>
+<meta name="description" content="سيروم لوميير بيور بالنياسيناميد 10% وفيتامين C كيوحّد لون البشرة، كيخفّف البقع الغامقة وكيرجّع الإشراقة الطبيعية فأقل من 4 أسابيع. الدفع عند الاستلام فكامل المغرب." />
+<meta name="theme-color" content="#fff8f2" />
+<meta property="og:title" content="لوميير بيور — سيروم الإشراقة" />
+<meta property="og:description" content="البقع كتخفّ… والبشرة كتشعل. الدفع عند الاستلام." />
+<meta property="og:type" content="product" />
+<link rel="preload" as="image" href="./product.png" />
+<link rel="preload" as="image" href="./before.png" />
+<link rel="preload" as="image" href="./after.png" />
+<link rel="stylesheet" href="./fonts.css" />
+<style>
+:root{
+  --bg:#fff8f2; --fg:#2a1810; --accent:#d4a017; --accent-2:#f0cd6a; --accent-deep:#a8760a;
+  --muted:#8b6f5c; --line:rgba(42,24,16,.10); --card:rgba(255,255,255,.62);
+  --glass:rgba(255,255,255,.55); --shadow:0 24px 60px -24px rgba(42,24,16,.35);
+  --display:"Cairo","Cairo Fallback","Segoe UI",Tahoma,sans-serif;
+  --body:"IBM Plex Sans Arabic","IBM Plex Sans Arabic Fallback","Segoe UI",Tahoma,sans-serif;
+  --maxw:1180px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:hidden}
+body{
+  font-family:var(--body);background:var(--bg);color:var(--fg);
+  line-height:1.65;overflow-x:hidden;font-size:16px;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+}
+h1,h2,h3,h4{font-family:var(--display);line-height:1.08;font-weight:800;letter-spacing:-.01em}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+::selection{background:var(--accent);color:#fff}
+
+/* ---- ambient gradient lighting ---- */
+.aura{position:fixed;inset:0;z-index:-2;pointer-events:none;
+  background:
+   radial-gradient(60% 45% at 85% -5%, color-mix(in srgb,var(--accent) 26%,transparent), transparent 60%),
+   radial-gradient(50% 40% at 0% 100%, color-mix(in srgb,var(--accent) 14%,transparent), transparent 55%);}
+.grain{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.035;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+
+/* ---- preloader ---- */
+#loader{position:fixed;inset:0;z-index:1000;background:var(--bg);display:grid;place-items:center;
+  transition:opacity .7s ease,visibility .7s;}
+#loader.done{opacity:0;visibility:hidden}
+.loader-mark{font-family:var(--display);font-weight:800;font-size:clamp(28px,7vw,46px);letter-spacing:.02em;
+  background:linear-gradient(100deg,var(--accent-deep),var(--accent-2),var(--accent-deep));
+  background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;
+  animation:shimmer 1.6s linear infinite;}
+.loader-bar{margin-top:18px;width:min(180px,52vw);height:2px;background:var(--line);border-radius:2px;overflow:hidden}
+.loader-bar span{display:block;height:100%;width:40%;background:var(--accent);animation:load 1.2s ease-in-out infinite}
+@keyframes shimmer{to{background-position:-220% 0}}
+@keyframes load{0%{margin-inline-start:-40%}100%{margin-inline-start:100%}}
+
+/* ---- layout helpers ---- */
+.wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:22px}
+section{position:relative}
+.eyebrow{font-family:var(--display);font-weight:700;font-size:12px;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--accent-deep);display:inline-flex;align-items:center;gap:9px}
+.eyebrow::before{content:"";width:26px;height:1.5px;background:var(--accent)}
+.lead{color:var(--muted);font-size:clamp(15px,2.4vw,18px);max-width:60ch}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+.reveal.in{opacity:1;transform:none}
+.reveal[data-d="1"]{transition-delay:.08s}.reveal[data-d="2"]{transition-delay:.16s}
+.reveal[data-d="3"]{transition-delay:.24s}.reveal[data-d="4"]{transition-delay:.32s}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}
+  .loader-mark,.loader-bar span{animation:none}}
+
+/* ---- buttons ---- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  font-family:var(--display);font-weight:700;font-size:15px;padding:16px 28px;border-radius:999px;
+  background:linear-gradient(180deg,var(--accent-2),var(--accent));color:#3a2600;
+  box-shadow:0 12px 26px -10px color-mix(in srgb,var(--accent) 75%,transparent),inset 0 1px 0 rgba(255,255,255,.5);
+  transition:transform .3s cubic-bezier(.16,1,.3,1),box-shadow .3s,filter .3s;position:relative;overflow:hidden}
+.btn::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.55),transparent 70%);
+  transform:translateX(-120%);transition:transform .7s}
+.btn:hover{transform:translateY(-3px);box-shadow:0 18px 36px -12px color-mix(in srgb,var(--accent) 85%,transparent)}
+.btn:hover::after{transform:translateX(120%)}
+.btn:active{transform:translateY(-1px) scale(.99)}
+.btn-ghost{background:transparent;color:var(--fg);box-shadow:inset 0 0 0 1.5px var(--line)}
+.btn-ghost::after{display:none}
+.btn-ghost:hover{box-shadow:inset 0 0 0 1.5px var(--accent);transform:translateY(-2px)}
+
+/* ---- header ---- */
+header{position:fixed;top:0;inset-inline:0;z-index:90;transition:.4s}
+.hbar{display:flex;align-items:center;justify-content:space-between;gap:16px;
+  max-width:var(--maxw);margin-inline:auto;padding:16px 22px;transition:.4s}
+header.stuck .hbar{margin-top:8px;padding:11px 18px;background:var(--glass);
+  backdrop-filter:blur(16px) saturate(1.4);-webkit-backdrop-filter:blur(16px) saturate(1.4);
+  border:1px solid rgba(255,255,255,.6);border-radius:999px;box-shadow:var(--shadow);
+  max-width:calc(var(--maxw) - 20px);margin-inline:auto}
+.brand{font-family:var(--display);font-weight:800;font-size:17px;display:flex;align-items:center;gap:9px}
+.brand i{width:10px;height:10px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 22%,transparent)}
+.brand small{display:block;font-weight:600;font-size:9px;letter-spacing:.22em;color:var(--muted);font-family:var(--body)}
+
+/* ---- HERO — editorial split ---- */
+.hero{padding:130px 0 40px;position:relative}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center}
+.issue{font-family:var(--display);font-weight:700;font-size:12px;letter-spacing:.2em;color:var(--muted);
+  display:flex;align-items:center;gap:14px;margin-bottom:26px}
+.issue span{height:1px;flex:1;background:var(--line)}
+.h1{font-size:clamp(44px,8.5vw,86px);font-weight:800;letter-spacing:-.02em}
+.h1 em{font-style:normal;position:relative;color:var(--accent-deep)}
+.h1 em::after{content:"";position:absolute;inset-inline:-2px;bottom:.08em;height:.28em;z-index:-1;
+  background:linear-gradient(90deg,color-mix(in srgb,var(--accent) 45%,transparent),transparent);border-radius:3px}
+.hero-sub{margin-top:20px;font-size:clamp(17px,2.6vw,21px);color:var(--fg);font-weight:600;max-width:46ch}
+.hero-p{margin-top:14px;color:var(--muted);max-width:44ch}
+.hero-cta{margin-top:32px;display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.rating{display:flex;align-items:center;gap:10px;margin-top:26px}
+.stars{color:var(--accent);letter-spacing:2px;font-size:15px}
+.rating b{font-family:var(--display)}
+.rating small{color:var(--muted)}
+.avatars{display:flex}
+.avatars i{width:30px;height:30px;border-radius:50%;border:2px solid var(--bg);margin-inline-start:-9px;
+  background:linear-gradient(135deg,var(--accent-2),var(--accent-deep));display:inline-block}
+
+.hero-media{position:relative}
+.hero-frame{position:relative;border-radius:26px;overflow:hidden;aspect-ratio:4/5;
+  box-shadow:var(--shadow);border:1px solid rgba(255,255,255,.6)}
+.hero-frame img{width:100%;height:100%;object-fit:cover}
+.hero-frame::before{content:"";position:absolute;inset:0;z-index:1;
+  background:radial-gradient(70% 50% at 70% 20%,rgba(255,255,255,.35),transparent 60%)}
+.hero-glow{position:absolute;inset:-16% -10% -22% -10%;z-index:-1;border-radius:50%;
+  background:radial-gradient(circle,color-mix(in srgb,var(--accent) 55%,transparent),transparent 62%);
+  filter:blur(30px);animation:breathe 7s ease-in-out infinite}
+@keyframes breathe{50%{transform:scale(1.06)}}
+.chip{position:absolute;z-index:3;background:var(--glass);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border:1px solid rgba(255,255,255,.7);border-radius:16px;padding:12px 15px;box-shadow:var(--shadow)}
+.chip.tl{top:16px;inset-inline-start:16px;display:flex;align-items:center;gap:10px}
+.chip.br{bottom:16px;inset-inline-end:16px}
+.chip .k{font-family:var(--display);font-weight:800;font-size:20px;color:var(--accent-deep);line-height:1}
+.chip .l{font-size:11px;color:var(--muted)}
+.chip.tl .dot{width:9px;height:9px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 4px rgba(34,197,94,.2)}
+
+/* ---- marquee ---- */
+.marquee{border-block:1px solid var(--line);margin-top:36px;padding:16px 0;overflow:hidden;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.marquee ul{display:flex;gap:52px;width:max-content;animation:scrollx 26s linear infinite;list-style:none}
+.marquee li{font-family:var(--display);font-weight:700;font-size:15px;color:var(--muted);white-space:nowrap;display:flex;align-items:center;gap:52px}
+.marquee li::after{content:"◆";color:var(--accent);font-size:9px}
+@keyframes scrollx{to{transform:translateX(50%)}}
+
+/* ---- generic section head ---- */
+.shead{max-width:var(--maxw);margin-inline:auto;padding-inline:22px}
+.stitle{font-size:clamp(30px,5.2vw,50px);margin-top:16px;font-weight:800;letter-spacing:-.02em}
+.pad{padding:clamp(64px,10vw,110px) 0}
+
+/* ---- story / agitation ---- */
+.story{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,6vw,80px);align-items:center}
+.story-card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:26px;backdrop-filter:blur(8px)}
+.pain{display:flex;gap:14px;padding:15px 0;border-bottom:1px dashed var(--line);align-items:flex-start}
+.pain:last-child{border-bottom:none}
+.pain svg{flex:none;color:var(--accent-deep);margin-top:2px}
+.pain b{font-family:var(--display)}
+.pain p{color:var(--muted);font-size:14.5px;margin-top:2px}
+
+/* ---- science / ingredients ---- */
+.ing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:44px}
+.ing{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:28px;position:relative;overflow:hidden;
+  transition:transform .4s cubic-bezier(.16,1,.3,1),box-shadow .4s;backdrop-filter:blur(8px)}
+.ing:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:color-mix(in srgb,var(--accent) 40%,transparent)}
+.ing .pct{font-family:var(--display);font-weight:800;font-size:44px;color:var(--accent-deep);line-height:1}
+.ing h3{font-size:20px;margin-top:10px}
+.ing p{color:var(--muted);font-size:14.5px;margin-top:8px}
+.ing .glow{position:absolute;width:120px;height:120px;border-radius:50%;top:-40px;inset-inline-end:-30px;
+  background:radial-gradient(circle,color-mix(in srgb,var(--accent) 40%,transparent),transparent 70%);filter:blur(14px)}
+
+/* ---- before/after slider ---- */
+.ba{position:relative;max-width:860px;margin:44px auto 0;border-radius:24px;overflow:hidden;
+  box-shadow:var(--shadow);border:1px solid rgba(255,255,255,.6);aspect-ratio:16/10;
+  touch-action:pan-y;cursor:ew-resize;user-select:none}
+.ba img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ba .after-wrap{position:absolute;inset:0;clip-path:inset(0 50% 0 0)}
+.ba-tag{position:absolute;top:14px;z-index:4;font-family:var(--display);font-weight:700;font-size:12px;
+  padding:6px 13px;border-radius:999px;color:#fff;backdrop-filter:blur(6px)}
+.ba-tag.b{right:14px;background:rgba(0,0,0,.55)}
+.ba-tag.a{left:14px;background:var(--accent-deep)}
+.ba-line{position:absolute;top:0;bottom:0;width:3px;background:var(--accent-2);z-index:5;
+  box-shadow:0 0 22px color-mix(in srgb,var(--accent) 80%,transparent);left:50%;transform:translateX(-50%)}
+.ba-handle{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:6;
+  width:52px;height:52px;border-radius:50%;background:var(--glass);backdrop-filter:blur(10px);
+  border:1.5px solid rgba(255,255,255,.8);display:grid;place-items:center;box-shadow:var(--shadow)}
+.ba-handle svg{color:var(--accent-deep)}
+
+/* ---- benefits ---- */
+.benefits{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:44px}
+.benefit{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:26px 22px;
+  transition:.4s;backdrop-filter:blur(8px)}
+.benefit:hover{background:#fff;transform:translateY(-5px);box-shadow:var(--shadow)}
+.benefit .ico{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;
+  background:color-mix(in srgb,var(--accent) 16%,transparent);color:var(--accent-deep);margin-bottom:16px}
+.benefit h3{font-size:17px}
+.benefit p{color:var(--muted);font-size:14px;margin-top:7px}
+
+/* ---- steps ---- */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:44px;counter-reset:s}
+.step{position:relative;padding-top:20px}
+.step::before{counter-increment:s;content:"0" counter(s);font-family:var(--display);font-weight:800;
+  font-size:60px;color:color-mix(in srgb,var(--accent) 30%,transparent);line-height:.8;display:block;margin-bottom:6px}
+.step h3{font-size:19px;margin-bottom:6px}
+.step p{color:var(--muted);font-size:14.5px}
+.step::after{content:"";position:absolute;top:44px;inset-inline-start:-11px;width:22px;height:2px;background:var(--line)}
+.step:first-child::after{display:none}
+
+/* ---- testimonials ---- */
+.tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:44px}
+.tcard{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:26px;backdrop-filter:blur(8px);
+  transition:.4s}
+.tcard:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
+.tcard .stars{margin-bottom:12px}
+.tcard p{font-size:15px}
+.tcard .who{margin-top:18px;display:flex;align-items:center;gap:11px}
+.tcard .who i{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--accent-2),var(--accent-deep));
+  display:grid;place-items:center;color:#fff;font-family:var(--display);font-weight:800;font-size:16px}
+.tcard .who b{font-family:var(--display);display:block;font-size:14.5px}
+.tcard .who small{color:var(--muted);font-size:12px}
+.tcard .verified{margin-inline-start:auto;font-size:11px;color:#16a34a;display:flex;align-items:center;gap:4px}
+
+/* ---- comparison ---- */
+.compare{overflow-x:auto;margin-top:44px;border-radius:22px;border:1px solid var(--line);background:var(--card);backdrop-filter:blur(8px)}
+table{width:100%;border-collapse:collapse;min-width:520px}
+th,td{padding:16px 18px;text-align:start;font-size:14.5px;border-bottom:1px solid var(--line)}
+thead th{font-family:var(--display);font-size:13px;color:var(--muted);font-weight:700}
+thead th.us{color:var(--accent-deep)}
+tbody td:first-child{font-weight:600;font-family:var(--display)}
+.col-us{background:color-mix(in srgb,var(--accent) 9%,transparent)}
+.yes{color:#16a34a;font-weight:800}.no{color:#c4553f}
+tr:last-child td{border-bottom:none}
+
+/* ---- guarantee band ---- */
+.guarantee{background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 16%,transparent),transparent);
+  border:1px solid color-mix(in srgb,var(--accent) 30%,transparent);border-radius:26px;padding:clamp(30px,5vw,52px);
+  display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center}
+.seal{width:110px;height:110px;border-radius:50%;display:grid;place-items:center;flex:none;
+  background:radial-gradient(circle,var(--accent-2),var(--accent-deep));color:#fff;text-align:center;
+  font-family:var(--display);font-weight:800;box-shadow:var(--shadow);border:3px solid rgba(255,255,255,.6)}
+.seal b{font-size:30px;line-height:1}.seal small{font-size:10px;letter-spacing:.05em}
+.guarantee h3{font-size:clamp(22px,3.6vw,30px)}
+.guarantee p{color:var(--muted);margin-top:10px;max-width:60ch}
+
+/* ---- urgency ---- */
+.urgency{display:flex;flex-wrap:wrap;gap:18px;align-items:center;justify-content:space-between;
+  background:var(--fg);color:#fff8f2;border-radius:22px;padding:22px 28px;margin-top:38px}
+.urgency .lbl{font-family:var(--display);font-weight:700}
+.urgency .lbl small{display:block;color:rgba(255,248,242,.6);font-size:12px;font-family:var(--body);font-weight:400}
+.count{display:flex;gap:10px}
+.count div{background:rgba(255,255,255,.1);border-radius:12px;padding:8px 12px;text-align:center;min-width:56px}
+.count b{font-family:var(--display);font-size:24px;display:block;line-height:1}
+.count small{font-size:10px;color:rgba(255,248,242,.6)}
+.stockbar{height:8px;border-radius:99px;background:rgba(255,255,255,.15);overflow:hidden;flex:1;min-width:140px}
+.stockbar i{display:block;height:100%;width:23%;background:linear-gradient(90deg,var(--accent-2),var(--accent))}
+
+/* ---- FAQ ---- */
+.faq{max-width:800px;margin:44px auto 0}
+details{background:var(--card);border:1px solid var(--line);border-radius:16px;margin-bottom:12px;overflow:hidden;backdrop-filter:blur(8px);transition:.3s}
+details[open]{box-shadow:var(--shadow);border-color:color-mix(in srgb,var(--accent) 30%,transparent)}
+summary{list-style:none;cursor:pointer;padding:19px 22px;font-family:var(--display);font-weight:700;font-size:16px;
+  display:flex;align-items:center;justify-content:space-between;gap:14px}
+summary::-webkit-details-marker{display:none}
+summary .plus{flex:none;width:26px;height:26px;border-radius:50%;background:color-mix(in srgb,var(--accent) 16%,transparent);
+  color:var(--accent-deep);display:grid;place-items:center;font-size:18px;transition:.3s}
+details[open] summary .plus{transform:rotate(45deg);background:var(--accent);color:#fff}
+details p{padding:0 22px 20px;color:var(--muted);font-size:14.5px}
+
+/* ---- ORDER ---- */
+.order{max-width:560px;margin-inline:auto}
+.order-card{background:rgba(255,255,255,.75);border:1px solid rgba(255,255,255,.8);border-radius:28px;
+  padding:clamp(26px,5vw,40px);box-shadow:var(--shadow);backdrop-filter:blur(16px)}
+.price-row{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin:6px 0 6px}
+.price-now{font-family:var(--display);font-weight:800;font-size:46px;color:var(--accent-deep);line-height:1}
+.price-now span{font-size:20px}
+.price-old{color:var(--muted);text-decoration:line-through;font-size:19px}
+.save-tag{background:#16a34a;color:#fff;font-family:var(--display);font-weight:700;font-size:12px;padding:5px 11px;border-radius:999px}
+.field{margin-top:16px}
+.field label{font-size:13px;font-weight:600;color:var(--muted);margin-bottom:7px;display:block}
+.field input,.field select{width:100%;padding:15px 16px;border-radius:14px;border:1.5px solid var(--line);
+  background:#fff;font-family:var(--body);font-size:16px;color:var(--fg);transition:.25s}
+.field input:focus,.field select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 18%,transparent)}
+.order .btn{width:100%;margin-top:22px;padding:18px;font-size:16px}
+.secure{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:18px;color:var(--muted);font-size:12px}
+.secure span{display:flex;align-items:center;gap:6px}
+.trust-badges{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:26px}
+.trust-badges div{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 14px;
+  font-size:12px;font-family:var(--display);font-weight:600;display:flex;align-items:center;gap:7px;color:var(--muted)}
+.trust-badges svg{color:var(--accent-deep)}
+
+/* ---- floating mobile CTA ---- */
+.float-cta{position:fixed;inset-inline:0;bottom:0;z-index:80;padding:12px 16px calc(12px + env(safe-area-inset-bottom));
+  background:linear-gradient(180deg,transparent,var(--bg) 30%);display:none;justify-content:center}
+.float-cta .btn{width:100%;max-width:460px;box-shadow:0 -6px 30px -8px color-mix(in srgb,var(--accent) 60%,transparent),0 12px 26px -10px color-mix(in srgb,var(--accent) 75%,transparent)}
+.float-cta .btn small{font-weight:400;font-size:12px;opacity:.8;font-family:var(--body)}
+
+/* ---- footer ---- */
+footer{border-top:1px solid var(--line);margin-top:40px;padding:40px 0 130px}
+.foot{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:center;color:var(--muted);font-size:13px}
+
+/* ---- responsive ---- */
+@media(max-width:900px){
+  .hero-grid,.story{grid-template-columns:1fr}
+  .hero-media{order:-1;max-width:440px;margin-inline:auto}
+  .ing-grid,.benefits,.steps,.tgrid{grid-template-columns:1fr 1fr}
+  .guarantee{grid-template-columns:1fr;text-align:center;justify-items:center}
+}
+@media(max-width:620px){
+  .benefits,.ing-grid,.tgrid,.steps{grid-template-columns:1fr}
+  .float-cta{display:flex}
+  footer{padding-bottom:140px}
+  header .brand small{display:none}
+  .btn{padding:15px 22px}
+}
+</style>
+</head>
+<body>
+<div class="aura"></div><div class="grain"></div>
+
+<div id="loader"><div style="text-align:center">
+  <div class="loader-mark">Lumière Pure</div>
+  <div class="loader-bar"><span></span></div>
+</div></div>
+
+<header id="hdr">
+  <div class="hbar">
+    <a href="#top" class="brand"><i></i>لوميير بيور<small>LUMIÈRE PURE · SKINCARE</small></a>
+    <a href="#order" class="btn" style="padding:12px 22px;font-size:14px">اطلب دابا</a>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <div class="issue reveal">إصدار الإشراقة · Nº01 <span></span> 100% أصلي</div>
+        <h1 class="h1 reveal" data-d="1">البقع كتخفّى<br>والبشرة <em>كتشعل</em></h1>
+        <p class="hero-sub reveal" data-d="2">سيروم مركّز كيرجّع لبشرتك التوهّج الطبيعي — بلا ماكياج، بلا فيلتر، بلا ما تخبّي والو.</p>
+        <p class="hero-p reveal" data-d="2">نياسيناميد 10% + فيتامين C خالص. تركيبة خفيفة كتشرب بسرعة وكتخدم وأنت نايض ولا نعسان.</p>
+        <div class="hero-cta reveal" data-d="3">
+          <a href="#order" class="btn">طلبي دابا — الدفع ملّي يوصل</a>
+          <a href="#ba" class="btn btn-ghost">شوف قبل / بعد</a>
+        </div>
+        <div class="rating reveal" data-d="4">
+          <div class="avatars"><i></i><i></i><i></i><i></i></div>
+          <div>
+            <div class="stars">★★★★★</div>
+            <small><b>4.9</b>/5 — من +2,400 زبونة مغربية</small>
+          </div>
+        </div>
+      </div>
+      <div class="hero-media reveal" data-d="2">
+        <div class="hero-glow"></div>
+        <div class="hero-frame">
+          <img src="./product.png" alt="سيروم لوميير بيور" fetchpriority="high" />
+          <div class="chip tl"><span class="dot"></span><div><div class="l" style="font-size:12px;font-weight:600">متوفر دابا</div></div></div>
+          <div class="chip br"><div class="k">-38%</div><div class="l">لأول 100 طلب</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="marquee reveal">
+    <ul>
+      <li>نياسيناميد 10%<li>فيتامين C خالص<li>حمض الهيالورونيك<li>بلا باربين<li>مجرّب على البشرة الحساسة<li>صنع بمعايير عالية
+      <li>نياسيناميد 10%<li>فيتامين C خالص<li>حمض الهيالورونيك<li>بلا باربين<li>مجرّب على البشرة الحساسة<li>صنع بمعايير عالية
+    </ul>
+  </div>
+</section>
+
+<!-- STORY / AGITATION -->
+<section class="pad">
+  <div class="wrap">
+    <div class="story">
+      <div class="reveal">
+        <span class="eyebrow">نعرفو الإحساس</span>
+        <h2 class="stitle">كل صباح، كتشوفي فالمرايا حاجة بغيتي تبدّليها</h2>
+        <p class="lead" style="margin-top:18px">البقع الغامقة، اللون لي ماشي موحّد، الإحساس بأن البشرة "طافية"… كتحاولي تغطّيهم بالفونديسيون، ولكن المشكل كيرجع كل نهار. الحقيقة؟ ماشي محتاجة تخبّي — محتاجة حل كيخدم من الجذور.</p>
+      </div>
+      <div class="story-card reveal" data-d="1">
+        <div class="pain"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 9v4m0 4h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><div><b>البقع الغامقة</b><p>آثار الحبوب والشمس كيبقاو باينين حتى مع الماكياج.</p></div></div>
+        <div class="pain"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 9v4m0 4h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><div><b>لون ماشي موحّد</b><p>مناطق غامقة وأخرى فاتحة كيخلّيو البشرة تبان تعبانة.</p></div></div>
+        <div class="pain"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 9v4m0 4h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><div><b>بشرة بلا توهّج</b><p>كتحسّي البشرة "طافية" حتى فالنهار بحال إلا ناقصها نور.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCIENCE -->
+<section class="pad" style="padding-top:0">
+  <div class="shead reveal">
+    <span class="eyebrow">التركيبة</span>
+    <h2 class="stitle">3 مكوّنات نشيطة، هدف واحد: إشراقة حقيقية</h2>
+    <p class="lead" style="margin-top:16px">ماشي وعود — مكوّنات معروفة علمياً بمفعولها على توحيد اللون وتفتيح البقع.</p>
+  </div>
+  <div class="wrap">
+    <div class="ing-grid">
+      <div class="ing reveal"><div class="glow"></div><div class="pct">10%</div><h3>نياسيناميد</h3><p>كيقلّل مظهر البقع الغامقة وكيوحّد اللون وكينظّم إفراز الدهون بلطف.</p></div>
+      <div class="ing reveal" data-d="1"><div class="glow"></div><div class="pct">C</div><h3>فيتامين C خالص</h3><p>مضاد أكسدة قوي كيعطي إشراقة فورية وكيحمي البشرة من عوامل التعب.</p></div>
+      <div class="ing reveal" data-d="2"><div class="glow"></div><div class="pct">HA</div><h3>حمض الهيالورونيك</h3><p>كيرطّب فالعمق وكيخلّي البشرة ممتلئة وناعمة طول النهار.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- BEFORE / AFTER -->
+<section id="ba" class="pad" style="padding-top:0">
+  <div class="shead reveal">
+    <span class="eyebrow">النتيجة الحقيقية</span>
+    <h2 class="stitle">جرّي بيدك… الفرق كيبان</h2>
+    <p class="lead" style="margin-top:16px">حرّك الخط للشمال واليمين باش تشوف التحوّل بعد 4 أسابيع من الاستعمال المنتظم.</p>
+  </div>
+  <div class="wrap">
+    <div class="ba reveal" id="baSlider" aria-label="مقارنة قبل وبعد">
+      <img src="./before.png" alt="قبل" class="before" style="filter:saturate(.9) brightness(.95)" loading="lazy" decoding="async" />
+      <div class="after-wrap"><img src="./after.png" alt="بعد" loading="lazy" decoding="async" /></div>
+      <span class="ba-tag b">قبل</span><span class="ba-tag a">بعد 4 أسابيع</span>
+      <div class="ba-line" id="baLine"></div>
+      <div class="ba-handle" id="baHandle"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M8 7 3 12l5 5M16 7l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFITS -->
+<section class="pad" style="padding-top:0">
+  <div class="shead reveal">
+    <span class="eyebrow">علاش غادي تحبّيه</span>
+    <h2 class="stitle">ماشي مجرّد سيروم — تجربة إشراقة كاملة</h2>
+  </div>
+  <div class="wrap">
+    <div class="benefits">
+      <div class="benefit reveal"><div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.8"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div><h3>إشراقة كل يوم</h3><p>بشرة كتبان صافية ومنوّرة من غير ماكياج.</p></div>
+      <div class="benefit reveal" data-d="1"><div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3>بقع أخفّ</h3><p>مظهر البقع كيقلّ تدريجياً مع الاستمرار.</p></div>
+      <div class="benefit reveal" data-d="2"><div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 3c1.5 3 4 4.5 4 8a4 4 0 0 1-8 0c0-3.5 2.5-5 4-8Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></div><h3>ترطيب خفيف</h3><p>كيشرب بسرعة وما كيخليش البشرة دهنية.</p></div>
+      <div class="benefit reveal" data-d="3"><div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2 4 6v6c0 5 3.5 8 8 10 4.5-2 8-5 8-10V6l-8-4Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></div><h3>لطيف وآمن</h3><p>مصاوب للاستعمال اليومي حتى للبشرة الحساسة.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- STEPS -->
+<section class="pad" style="padding-top:0">
+  <div class="shead reveal">
+    <span class="eyebrow">الروتين</span>
+    <h2 class="stitle">دقيقتين فالصباح والليل. غير هكاك.</h2>
+  </div>
+  <div class="wrap">
+    <div class="steps">
+      <div class="step reveal"><h3>نقّي</h3><p>غسّلي وجهك بالماء الفاتر ونشّفيه بلطف.</p></div>
+      <div class="step reveal" data-d="1"><h3>حطّي</h3><p>3 إلى 4 قطرات ديال السيروم وفرّقيهم بأطراف صابعك.</p></div>
+      <div class="step reveal" data-d="2"><h3>رطّبي</h3><p>زيدي المرطّب ديالك وفالنهار حطّي واقي الشمس.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="pad" style="padding-top:0">
+  <div class="shead reveal">
+    <span class="eyebrow">آراء الزبونات</span>
+    <h2 class="stitle">+2,400 زبونة مغربية… وهاد شنو قالو</h2>
+  </div>
+  <div class="wrap">
+    <div class="tgrid">
+      <div class="tcard reveal"><div class="stars">★★★★★</div><p>"من الأسبوع التاني بان الفرق فالبقع لي كانت عندي فالخد. دابا كنخرج بلا فونديسيون." </p><div class="who"><i>س</i><div><b>سارة . ب</b><small>الدار البيضاء</small></div><span class="verified">✓ موثّق</span></div></div>
+      <div class="tcard reveal" data-d="1"><div class="stars">★★★★★</div><p>"عجبني بزاف حيت خفيف وكيشرب دغيا. والدفع ملّي وصل ريّحني — ماخلّصتش قبل ما نشوف المنتوج."</p><div class="who"><i>م</i><div><b>مريم . ل</b><small>الرباط</small></div><span class="verified">✓ موثّق</span></div></div>
+      <div class="tcard reveal" data-d="2"><div class="stars">★★★★★</div><p>"الجودة أحسن ممّا كنت كنتصوّر بالثمن هذا. البشرة ولّات موحّدة أكثر والإشراقة بانت."</p><div class="who"><i>إ</i><div><b>إيمان . ف</b><small>مراكش</small></div><span class="verified">✓ موثّق</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARISON -->
+<section class="pad" style="padding-top:0">
+  <div class="shead reveal">
+    <span class="eyebrow">المقارنة</span>
+    <h2 class="stitle">علاش لوميير بيور، ماشي أي سيروم آخر</h2>
+  </div>
+  <div class="wrap reveal">
+    <div class="compare">
+      <table>
+        <thead><tr><th>الميزة</th><th class="us">لوميير بيور</th><th>سيروم عادي</th><th>الحلول العشوائية</th></tr></thead>
+        <tbody>
+          <tr><td>نياسيناميد 10% + فيتامين C</td><td class="col-us yes">✓</td><td class="no">غالباً لا</td><td class="no">✕</td></tr>
+          <tr><td>تركيبة خفيفة كتشرب بسرعة</td><td class="col-us yes">✓</td><td class="no">أحياناً دهنية</td><td class="no">✕</td></tr>
+          <tr><td>مجرّب على البشرة الحساسة</td><td class="col-us yes">✓</td><td>؟</td><td class="no">✕</td></tr>
+          <tr><td>الدفع عند الاستلام</td><td class="col-us yes">✓</td><td class="no">خلّص قبل</td><td class="no">✕</td></tr>
+          <tr><td>ضمان الرضا</td><td class="col-us yes">✓</td><td class="no">✕</td><td class="no">✕</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- GUARANTEE -->
+<section class="pad" style="padding-top:0">
+  <div class="wrap reveal">
+    <div class="guarantee">
+      <div class="seal"><div><b>100%</b><small>ضمان الرضا</small></div></div>
+      <div>
+        <h3>جرّبيه بلا مخاطرة — الدفع ملّي يوصل</h3>
+        <p>كتخلّصي غير ملّي يوصلك المنتوج ليدك. وإلا ما عجبكش غير رجّعو ليك فلوسك بلا أسئلة. الثقة عندنا قبل كل شي.</p>
+      </div>
+    </div>
+    <div class="urgency">
+      <div class="lbl">🔥 عرض الإطلاق ساري<small>الثمن يرجع لـ 399 د.م من بعد</small></div>
+      <div class="stockbar" title="المخزون"><i></i></div>
+      <div class="count" id="count" aria-label="الوقت المتبقي">
+        <div><b id="h">00</b><small>ساعة</small></div>
+        <div><b id="m">00</b><small>دقيقة</small></div>
+        <div><b id="s">00</b><small>ثانية</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="pad" style="padding-top:0">
+  <div class="shead reveal">
+    <span class="eyebrow">أسئلة كترجعليكم</span>
+    <h2 class="stitle">كل شي خاصك تعرفيه</h2>
+  </div>
+  <div class="wrap">
+    <div class="faq">
+      <details class="reveal" open><summary>واش غادي ينفع لبشرتي؟<span class="plus">+</span></summary><p>واه. لوميير بيور مصاوب لأغلب أنواع البشرة بما فيها الحساسة. بدّاي بمرة فالنهار وزيدي شوية بشوية. لأحسن نتيجة استعمليه بانتظام لمدة 4 أسابيع.</p></details>
+      <details class="reveal"><summary>شحال كياخد باش تبان النتيجة؟<span class="plus">+</span></summary><p>أغلب الزبونات كيلاحظو إشراقة فأول أيام وتحسّن فالبقع من الأسبوع 2 حتى 4 مع الاستمرار.</p></details>
+      <details class="reveal"><summary>شحال كياخد التوصيل؟<span class="plus">+</span></summary><p>من 24 إلى 72 ساعة فكامل المغرب. كتخلّصي كاش غير ملّي يوصلك الطلب ليد الباب.</p></details>
+      <details class="reveal"><summary>واش آمن للبشرة الحساسة؟<span class="plus">+</span></summary><p>واه، التركيبة لطيفة. إلا كانت بشرتك حساسة بزاف، جرّبي على منطقة صغيرة 24 ساعة قبل.</p></details>
+      <details class="reveal"><summary>واش نقدر نبدّل ولا نرجّع؟<span class="plus">+</span></summary><p>واه، ضمن سياسة الرضا. سياسة استرجاع بسيطة وواضحة بلا تعقيد.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- ORDER -->
+<section id="order" class="pad" style="padding-top:0">
+  <div class="wrap">
+    <div class="order reveal">
+      <div class="order-card">
+        <span class="eyebrow">كمّلي الطلب</span>
+        <h2 class="stitle" style="font-size:28px;margin-top:10px">سيروم لوميير بيور</h2>
+        <div class="price-row">
+          <div class="price-now">249 <span>د.م</span></div>
+          <div class="price-old">399 د.م</div>
+          <div class="save-tag">توفّري 150 د.م</div>
+        </div>
+        <p style="color:var(--muted);font-size:14px">الدفع عند الاستلام · توصيل سريع لكامل المغرب · بلا خلاص مسبق</p>
+        <button type="button" class="btn demo-cta" style="width:100%">تأكيد الطلب — عرض توضيحي فقط</button>
+        <div class="secure">
+          <span>🔒 معلوماتك محمية</span><span>🚚 توصيل مضمون</span><span>💵 خلّص عند الباب</span>
+        </div>
+      </div>
+      <div class="trust-badges">
+        <div><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 2 4 6v6c0 5 3.5 8 8 10 4.5-2 8-5 8-10V6l-8-4Z" stroke="currentColor" stroke-width="1.7"/></svg>منتوج أصلي 100%</div>
+        <div><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>+2,400 طلب ناجح</div>
+        <div><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7"/><path d="M12 7v5l3 2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>توصيل 24-72 ساعة</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div class="brand" style="font-size:15px"><i></i>لوميير بيور</div>
+    <div>© 2025 لوميير بيور — كل الحقوق محفوظة · صنع بعناية فالمغرب</div>
+  </div>
+</footer>
+
+<div class="float-cta">
+  <a href="#order" class="btn">اطلب دابا · 249 د.م <small>— الدفع ملّي يوصل</small></a>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var rm = matchMedia("(prefers-reduced-motion:reduce)").matches;
+
+  // preloader
+  window.addEventListener("load", function(){
+    setTimeout(function(){ document.getElementById("loader").classList.add("done"); }, 380);
+  });
+  setTimeout(function(){ document.getElementById("loader").classList.add("done"); }, 2600);
+
+  // scroll reveal
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } });
+  },{threshold:.12,rootMargin:"0px 0px -8% 0px"});
+  document.querySelectorAll(".reveal").forEach(function(el){ if(rm){el.classList.add("in");} else {io.observe(el);} });
+
+  // sticky header
+  var hdr = document.getElementById("hdr");
+  addEventListener("scroll", function(){ hdr.classList.toggle("stuck", scrollY > 40); }, {passive:true});
+
+  // before/after slider
+  var s=document.getElementById("baSlider"), line=document.getElementById("baLine"),
+      handle=document.getElementById("baHandle"), aw=s.querySelector(".after-wrap"), drag=false;
+  function set(x){
+    var r=s.getBoundingClientRect(), p=Math.min(98,Math.max(2,(x-r.left)/r.width*100));
+    aw.style.clipPath="inset(0 "+(100-p)+"% 0 0)"; line.style.left=p+"%"; handle.style.left=p+"%";
+  }
+  function px(e){ return e.touches?e.touches[0].clientX:e.clientX; }
+  s.addEventListener("pointerdown",function(e){drag=true;set(px(e));});
+  addEventListener("pointermove",function(e){ if(drag) set(px(e)); },{passive:true});
+  addEventListener("pointerup",function(){drag=false;});
+  s.addEventListener("touchmove",function(e){set(px(e));},{passive:true});
+
+  // countdown (resets each ~day, persistent per session)
+  var end = +sessionStorage.getItem("lp_end");
+  if(!end){ end = Date.now()+ (5*3600+ 43*60)*1000; sessionStorage.setItem("lp_end", end); }
+  function tick(){
+    var d=Math.max(0,end-Date.now()), h=Math.floor(d/3.6e6), m=Math.floor(d%3.6e6/6e4), sec=Math.floor(d%6e4/1e3);
+    document.getElementById("h").textContent=("0"+h).slice(-2);
+    document.getElementById("m").textContent=("0"+m).slice(-2);
+    document.getElementById("s").textContent=("0"+sec).slice(-2);
+  }
+  tick(); setInterval(tick,1000);
+})();
+</script>
+</body>
+</html>
