@@ -86,8 +86,7 @@ header.stuck .hbar{background:var(--glass);backdrop-filter:blur(16px);border-bot
 .holo-cell span{color:var(--muted);font-size:11.5px}
 
 .frow{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;padding:54px 0}
-.frow:nth-child(even){direction:ltr}
-.frow:nth-child(even) .ftext{direction:rtl}
+.frow:nth-child(even) .fmedia{order:2}
 .frow .fmedia{border-radius:22px;overflow:hidden;aspect-ratio:4/3;border:1px solid var(--line);position:relative}
 .frow .fmedia img{width:100%;height:100%;object-fit:cover}
 .frow .fmedia::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 60px rgba(124,58,237,.25)}
@@ -159,7 +158,7 @@ details p{padding:0 20px 18px;color:var(--muted);font-size:14px}
 .float-cta .btn{width:100%;max-width:420px}
 footer{border-top:1px solid var(--line);margin-top:40px;padding:36px 0 130px;text-align:center;color:var(--muted);font-size:12px}
 
-@media(max-width:900px){.holo-grid{grid-template-columns:1fr 1fr}.frow,.frow:nth-child(even){grid-template-columns:1fr;direction:rtl}.tgrid{grid-template-columns:1fr}.guarantee{grid-template-columns:1fr;text-align:center;justify-items:center}}
+@media(max-width:900px){.holo-grid{grid-template-columns:1fr 1fr}.frow,.frow:nth-child(even){grid-template-columns:1fr}.tgrid{grid-template-columns:1fr}.guarantee{grid-template-columns:1fr;text-align:center;justify-items:center}}
 @media(max-width:620px){.float-cta{display:flex}footer{padding-bottom:140px}}
 </style>
 </head>

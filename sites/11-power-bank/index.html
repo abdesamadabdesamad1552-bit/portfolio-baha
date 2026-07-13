@@ -85,8 +85,7 @@ header.stuck{border-bottom-color:var(--line)}
 
 /* feature rows — alternating, Apple style large media */
 .frow{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;padding:60px 0}
-.frow:nth-child(even){direction:ltr}
-.frow:nth-child(even) .ftext{direction:rtl}
+.frow:nth-child(even) .fmedia{order:2}
 .frow .fmedia{border-radius:26px;overflow:hidden;aspect-ratio:4/3;box-shadow:var(--shadow)}
 .frow .fmedia img{width:100%;height:100%;object-fit:cover}
 .ftext .k{font-family:var(--display);font-weight:700;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent)}
@@ -177,7 +176,7 @@ details p{padding:0 22px 20px;color:var(--muted);font-size:14.5px}
 .float-cta .btn{width:100%;max-width:440px}
 footer{border-top:1px solid var(--line);margin-top:40px;padding:36px 0 130px;text-align:center;color:var(--muted);font-size:12.5px}
 
-@media(max-width:900px){.stats{grid-template-columns:1fr 1fr}.stat:nth-child(3){border-inline-start:none}.frow,.frow:nth-child(even){grid-template-columns:1fr;direction:rtl}.tgrid{grid-template-columns:1fr}.guarantee{grid-template-columns:1fr;text-align:center;justify-items:center}}
+@media(max-width:900px){.stats{grid-template-columns:1fr 1fr}.stat:nth-child(3){border-inline-start:none}.frow,.frow:nth-child(even){grid-template-columns:1fr}.tgrid{grid-template-columns:1fr}.guarantee{grid-template-columns:1fr;text-align:center;justify-items:center}}
 @media(max-width:620px){.hnav{display:none}.float-cta{display:flex}footer{padding-bottom:140px}.float-spec{padding:10px 13px}.float-spec b{font-size:16px}}
 </style>
 </head>
